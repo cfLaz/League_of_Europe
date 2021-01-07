@@ -1,0 +1,30 @@
+.Nav {
+  width: 100%;
+  /* background-color: blue; */
+  height: 10%;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+}
+
+.Nav div {
+  border: 2px orange dotted;
+}
+
+.Title {
+  font-size: 20px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  padding: 2%;
+  color: red;
+  border-radius: 0 0 50% 50%;
+  text-align: center;
+  
+}
+
+.Auth {
+  width: 15%;
+}
+
+.Auth button {
+  margin-right: 5%;
+}

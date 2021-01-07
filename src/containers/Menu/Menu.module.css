@@ -1,0 +1,9 @@
+.Menu {
+  margin-top: 5%;
+  border: 2px orange dotted;
+  height: 80%;
+  width: 20%;
+  float: left;
+  display: flex;
+  
+}

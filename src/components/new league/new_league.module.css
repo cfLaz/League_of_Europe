@@ -1,0 +1,31 @@
+.MainDiv {
+  display:none
+}  
+.Teams { 
+  display: flex;
+  border: 1px solid pink;
+  width:90%;
+  height: auto;
+  margin: auto;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.Preview {
+  position: absolute;
+  width: 20%;
+  height: 20%;
+  margin-left: 1%;
+  border: 1px solid black;
+}
+/* 
+.Emblem {
+  width: 10%;
+  height: 10%;
+} */
+
+
+img{
+  width: 50%;
+  height: 50%;
+}
