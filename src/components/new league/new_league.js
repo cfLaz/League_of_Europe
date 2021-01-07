@@ -1,10 +1,10 @@
-import React, {useState, useEffect, useCallback} from 'react';
-import Aux from '../../Auxilary';
+import React from 'react';
+//import Aux from '../../Auxilary';
 import classes from './new_league.module.css';
 import teams from '../../containers/Teams/Teams';
-import Emblem from '../Emblem/Emblem';
+//import Emblem from '../Emblem/Emblem';
 
-import {connect, useDispatch, useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {select} from '../../store/actions/indexA';
 
 let NewLeague = (props) => {
@@ -27,7 +27,7 @@ let NewLeague = (props) => {
   }   */
 
 
-  let clubList = Object.entries(teams)
+  let clubList = Object.values(teams)
 
   return (
   <div className={loaded ? null : classes.MainDiv}>
@@ -37,12 +37,24 @@ let NewLeague = (props) => {
     <div className={classes.Teams}>
 
       {clubList.map(club => {
-        return (
-          <div className={classes.Emblem} key={club[1].name} onClick={() => selectClub(club)}>
+        return <img 
+                src={club.emblemInfo[0]} 
+                alt={club.emblemInfo[1]} 
+                title={club.emblemInfo[2]} 
+                key={club.emblemInfo[2]}
+                onClick={()=>selectClub(club.emblemInfo[1])} //for now just the name 
+                />
+        /* return (
+           <div className={classes.Emblem} key={club[1].name} onClick={()  => selectClub(club)}>
             {club[1].emblem}
-          </div>)
-      })
-      }
+          </div>
+          ) */
+
+          /* <Emblem key={club[1].name} onClick={() => selectClub(club) }>
+              {club[1].emblem}
+            </Emblem>   */
+          
+      })}
     </div>
 
     <div className={classes.Preview}>

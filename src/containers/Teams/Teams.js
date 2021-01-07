@@ -1,32 +1,33 @@
 import lfc from '../../images/lfc.png';
 import wol from '../../images/wolves.png';
 import sot from '../../images/soton.png';
+/* 
+import {useDispatch} from 'react-redux';
+import {select} from '../../store/actions/indexA';
+ */
 
-
-let Teams = {
-    Liverpool: {
-      ATK: 91,
-      MID: 88,
-      DEF: 90,
-      emblem:  <img src={lfc} alt='Liverpool Footbal Club' title="Liv'pool"/>,
-      name: 'Liverpool FC',
-      //playing: true,
-    },
-     Wolves: {
-      ATK: 85,
-      MID: 83,
-      DEF: 82,
-      emblem: <img src= {wol} alt='Wolverhampton Wanderers' title='Wolves'/>,
-      name: "Wolverhampton Wanderers"
-    },
-    Soton: {
-      ATK: 83,
-      MID: 84,
-      DEF: 81,
-      emblem: <img src= {sot} alt='Southampton FC' title='Soton'/>,
-      name: 'Southampton FC',
-    },
-   
-}
+let Teams ={
+      Liverpool: {
+        ATK: 91,
+        MID: 88,
+        DEF: 90,
+        //name: 'Liverpool FC',
+        emblemInfo: [lfc, 'Liverpool Footbal Club', "Liv'pool"],
+        //playing: true,
+      },
+      Wolves: {
+        ATK: 85,
+        MID: 83,
+        DEF: 82,
+        emblemInfo: [wol, 'Wolverhampton Wanderers', "Wolves"],
+      },
+      Soton: {
+        ATK: 83,
+        MID: 84,
+        DEF: 81,
+        emblemInfo: [sot, 'Southampton FC', "Soton"],
+      },
+    
+  }
 
 export default Teams;
