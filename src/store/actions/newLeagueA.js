@@ -1,6 +1,6 @@
 export const loaded =() =>{
   return{
-      type: 'LOAD_NEW_LEAGUE',
+      type: 'LOAD_NEW_LEAGUE', // used for unloading too
     }
   
 };
@@ -15,6 +15,13 @@ export const select =(club) =>{
     selectedClub: club
   }
 };
+
+export const remove=(club)=> {
+  return{
+    type: 'REMOVE_CLUB',
+    removeClub: club
+  }
+}
 
 export const load =() =>{
   return{

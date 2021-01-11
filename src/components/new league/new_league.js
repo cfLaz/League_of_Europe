@@ -42,33 +42,18 @@ let NewLeague = (props) => {
                 alt={club.emblemInfo[1]} 
                 title={club.emblemInfo[2]} 
                 key={club.emblemInfo[2]}
-                onClick={()=>selectClub(club.emblemInfo[1])} //for now just the name 
+                onClick={()=>selectClub(club)}
                 />
-        /* return (
-           <div className={classes.Emblem} key={club[1].name} onClick={()  => selectClub(club)}>
-            {club[1].emblem}
-          </div>
-          ) */
-
-          /* <Emblem key={club[1].name} onClick={() => selectClub(club) }>
-              {club[1].emblem}
-            </Emblem>   */
-          
       })}
     </div>
 
-    <div className={classes.Preview}>
+   {/*  <div className={classes.Preview}>
       <p>smrk... 'sup bra'h</p>
-    </div>
+    </div> */}
 
   </div>
   )
 }
 
-/* const mapStateToProps = state => {
-  return{
-    loaded: state.NewLeague.loaded
-  };
-} */
 
 export default NewLeague;

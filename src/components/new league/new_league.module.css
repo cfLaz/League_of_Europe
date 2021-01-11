@@ -12,17 +12,12 @@
 }
 
 .Preview {
-  position: absolute;
+  position: fixed;
   width: 20%;
-  height: 20%;
+  height: 80%;
   margin-left: 1%;
   border: 1px solid black;
 }
-/* 
-.Emblem {
-  width: 10%;
-  height: 10%;
-} */
 
 
 img{

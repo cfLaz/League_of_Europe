@@ -12,7 +12,7 @@ let Teams ={
         MID: 88,
         DEF: 90,
         //name: 'Liverpool FC',
-        emblemInfo: [lfc, 'Liverpool Footbal Club', "Liv'pool"],
+        emblemInfo: [lfc, 'Liverpool FC', "Liv'pool"],
         //playing: true,
       },
       Wolves: {
