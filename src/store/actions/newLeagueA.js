@@ -1,12 +1,13 @@
-export const loaded =() =>{
-  return{
-      type: 'LOAD_NEW_LEAGUE', // used for unloading too
-    }
-  
+export const Loading =() =>{
+  return{type: 'LOAD_NEW_LEAGUE'} 
+};
+
+export const unload =() =>{
+  return {type: 'UNLOAD_NEW_LEAGUE'}
 };
 
 export const clear =() =>{
-  return {type: 'CLEAR'}
+  return {type: 'CLEAR_SELECTED_CLUBS'}
 };
 
 export const select =(club) =>{
@@ -19,7 +20,7 @@ export const select =(club) =>{
 export const remove=(club)=> {
   return{
     type: 'REMOVE_CLUB',
-    removeClub: club
+    removedClub: club
   }
 }
 

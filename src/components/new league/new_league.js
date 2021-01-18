@@ -10,7 +10,8 @@ import {select} from '../../store/actions/indexA';
 let NewLeague = (props) => {
   
   let loaded = useSelector(state => state.newLeague.loaded);
-  
+  let selectedClubs = useSelector(state=> state.newLeague.selectedClubs)
+
   let dispatch = useDispatch();
 
   let selectClub= club => dispatch(select(club))
@@ -37,13 +38,15 @@ let NewLeague = (props) => {
     <div className={classes.Teams}>
 
       {clubList.map(club => {
-        return <img 
-                src={club.emblemInfo[0]} 
-                alt={club.emblemInfo[1]} 
-                title={club.emblemInfo[2]} 
-                key={club.emblemInfo[2]}
-                onClick={()=>selectClub(club)}
-                />
+        let team = selectedClubs.includes(club) ? null :
+          <img 
+            alt={club.emblemInfo[1]} 
+            src={club.emblemInfo[0]} 
+            key={club.emblemInfo[2]}
+            title={club.emblemInfo[2]} 
+            onClick={()=>selectClub(club)}
+          />
+        return team;
       })}
     </div>
 
@@ -54,6 +57,5 @@ let NewLeague = (props) => {
   </div>
   )
 }
-
 
 export default NewLeague;

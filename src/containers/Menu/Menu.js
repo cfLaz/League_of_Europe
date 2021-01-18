@@ -2,13 +2,13 @@ import React from 'react';
 import classes from './Menu.module.css';
 //import NewLeague from '../../components/new league/new_league';
 import { useDispatch } from 'react-redux';
-import {loaded} from '../../store/actions/indexA';
+import {Loading} from '../../store/actions/indexA';
 
 const Menu = () => {
 
   let dispatch = useDispatch();
 
-  let loadClubs = () => dispatch(loaded());
+  let loadClubs = () => dispatch(Loading());
 
   return(
     <aside className={classes.Menu}>

@@ -22,13 +22,16 @@
   height: 5%;
   margin: 1% 0% 0% 5%;
 }
+.BackButtons:hover{
+  cursor: pointer;
+} 
 
 .Preview div img {
   width: 15%;
   height: 100%;
   margin-top: 1%;
 }
-
+  
 .Preview div {
   width: 100%;
   height: 5%;

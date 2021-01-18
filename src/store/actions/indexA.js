@@ -1,5 +1,7 @@
 export {
-  loaded,
-
+  Loading,
+  unload,
   select,
+  remove,
+  clear,
 } from './newLeagueA';
