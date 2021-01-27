@@ -4,4 +4,5 @@ export {
   select,
   remove,
   clear,
+  start
 } from './newLeagueA';

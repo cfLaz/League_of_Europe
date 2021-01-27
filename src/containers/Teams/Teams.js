@@ -216,7 +216,7 @@ let Teams ={
         ATK: 83,
         MID: 84,
         DEF: 81,
-        emblemInfo: [mar, 'Olimpique de MArseille', "Marseille"],
+        emblemInfo: [mar, 'Olimpique de Marseille', "Marseille"],
       },
       Bordeaux: {
         ATK: 83,

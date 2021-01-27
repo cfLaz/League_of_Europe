@@ -23,6 +23,12 @@ export const remove=(club)=> {
     removedClub: club
   }
 }
+export const start =(league)=> {
+  return{
+    type: 'START_NEW_LEAGUE',
+    new_league: league
+  }
+}
 
 export const load =() =>{
   return{

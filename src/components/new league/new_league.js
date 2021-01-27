@@ -49,7 +49,6 @@ let NewLeague = (props) => {
         return team;
       })}
     </div>
-
    {/*  <div className={classes.Preview}>
       <p>smrk... 'sup bra'h</p>
     </div> */}
