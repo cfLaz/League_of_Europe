@@ -11,6 +11,7 @@ let NewLeague = (props) => {
   
   let loaded = useSelector(state => state.newLeague.loaded);
   let selectedClubs = useSelector(state=> state.newLeague.selectedClubs)
+  let limit = useSelector(state=> state.newLeague.limit)
 
   let dispatch = useDispatch();
 
@@ -38,14 +39,24 @@ let NewLeague = (props) => {
     <div className={classes.Teams}>
 
       {clubList.map(club => {
-        let team = selectedClubs.includes(club) ? null :
-          <img 
-            alt={club.emblemInfo[1]} 
-            src={club.emblemInfo[0]} 
-            key={club.emblemInfo[2]}
-            title={club.emblemInfo[2]} 
-            onClick={()=>selectClub(club)}
-          />
+        let team = selectedClubs.includes(club) ? null :(
+          limit ?
+            <img 
+              alt={club.emblemInfo[1]} 
+              src={club.emblemInfo[0]} 
+              key={club.emblemInfo[2]}
+              title={club.emblemInfo[2]}
+              className={classes.Disable}             
+            /> 
+            : 
+            <img 
+              alt={club.emblemInfo[1]} 
+              src={club.emblemInfo[0]} 
+              key={club.emblemInfo[2]}
+              title={club.emblemInfo[2]}
+              onClick={()=>selectClub(club)}    
+            /> 
+          )
         return team;
       })}
     </div>

@@ -30,8 +30,8 @@ export const start =(league)=> {
   }
 }
 
-export const load =() =>{
+export const limit =() =>{
   return{
-      
+      type: 'LIMIT_REACHED'
     }
 }

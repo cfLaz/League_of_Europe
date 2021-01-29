@@ -60,7 +60,11 @@ const Preview = () => {
 
       {preview}
 
-      <button onClick={() => startNewLeague(league)}>
+      <button 
+      disabled={!limit} 
+      onClick={() => startNewLeague(league)}
+      className={limit ? null : classes.Start}
+      title= {!limit ? 'Need 20 clubs for the league' : null}>
         Start the League of Europe!
       </button>
 

@@ -25,3 +25,7 @@ img{
   height: 9.5%;
   margin-left: 1px;
 }
+
+.Disable:hover {
+  cursor: not-allowed;
+}
