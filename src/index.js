@@ -8,6 +8,7 @@ import ReduxThunk from 'redux-thunk'; //to return a function that will dispatch 
 import {Provider} from 'react-redux';
 
 import newLeagueR from './store/reducers/newLeagueR';
+import AuthR from './store/reducers/AuthR';
 
 /* const composeEnhancers = process.env.REACT_APP_NODE_ENVX === "development" ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose; */
 
@@ -15,6 +16,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
   newLeague: newLeagueR,
+  auth: AuthR,
 })
 
 const store = createStore(

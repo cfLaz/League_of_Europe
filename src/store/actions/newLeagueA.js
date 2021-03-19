@@ -26,7 +26,7 @@ export const remove=(club)=> {
 export const start =(league)=> {
   return{
     type: 'START_NEW_LEAGUE',
-    new_league: league
+    newLeague: league
   }
 }
 

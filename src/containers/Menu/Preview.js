@@ -9,8 +9,10 @@ import * as actions from '../../store/actions/indexA';
 
 const Preview = () => {
 
-  let clubs = useSelector(state => state.newLeague.selectedClubs)
-  let limit = useSelector(state => state.newLeague.limit)
+  let clubs = useSelector(state => state.newLeague.selectedClubs);
+  let limit = useSelector(state => state.newLeague.limit);
+  //let token = useSelector(state => state.auth.token)
+  let userID = useSelector(state => state.auth.userID)
 
   let dispatch = useDispatch();
   let removeClub= club => dispatch(actions.remove(club));
@@ -44,7 +46,14 @@ const Preview = () => {
     })
   }
   //console.log(league)
-
+  const startLeagueHandler = () => {
+    if(!userID) return alert('You need to log in first');
+    let data = {
+      clubs: league,
+      userID: userID,
+    }
+    return startNewLeague(JSON.stringify(data))
+  }
   return(
     <div className={classes.Preview}>
       
@@ -62,7 +71,7 @@ const Preview = () => {
 
       <button 
       disabled={!limit} 
-      onClick={() => startNewLeague(league)}
+      onClick={() => startLeagueHandler()}
       className={limit ? null : classes.Start}
       title= {!limit ? 'Need 20 clubs for the league' : null}>
         Start the League of Europe!

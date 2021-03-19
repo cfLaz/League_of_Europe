@@ -11,32 +11,37 @@ let initialState={
  let selectClub = (state, action) => {
 
   let arr= [...state.selectedClubs];
-  arr.push(action.selectedClub)
   
-  if(arr.length<=20)
-    {return updateObject(state, {selectedClubs: arr})}
-  else {return updateObject(state, {limit:true})}
+  if(arr.length<19) {
+    arr.push(action.selectedClub)
+    return updateObject(state, {selectedClubs: arr}) 
+  }
+  else if(arr.length===19) {
+    arr.push(action.selectedClub)
+    return updateObject(state, {selectedClubs:arr, limit: true} )
+  }
 } 
 
 let removeClub = (state, action) =>{
   let arr= [...state.selectedClubs];
   let position = arr.indexOf(action.removedClub)
   arr.splice(position,1)
-  
-  if(arr.length<20) //it will always be false if I remove, since it shouldn't add anything after 20
-    {return updateObject(state, {selectedClubs: arr, limit:false})}
+  //it will always be false if I remove, since it shouldn't add anything after 20
+  return updateObject(state, {selectedClubs: arr, limit:false})
 }
 
 let startNewLeague = (state, action) => {
-  axios.post('/leagues.json', action.new_league).then(
+
+  axios.post('/leagues.json', action.newLeague).then(
     response => console.log(response)).catch(
       error=> console.log(error))
   
   state.selectedClubs=[];
+  state.limit=false;
   return state
 }
 
-let reducer = (state = initialState, action) => {
+const reducer = (state = initialState, action) => {
   switch(action.type){
 
     case 'LOAD_NEW_LEAGUE' : return updateObject(state, {loaded: !state.loaded})

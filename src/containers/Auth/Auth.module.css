@@ -1,0 +1,38 @@
+.Div {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(128, 128, 128, 0.4);
+  /*opacity: 0.4;*/
+  z-index: 2;
+}
+
+.Form {
+  z-index: 3;
+  position: fixed;
+  width: 50%;
+  margin-top: 10%;
+  margin-left: 25%;
+  height: 30%;
+  background-color: rgb(221, 185, 119);
+  opacity: 1;
+
+  display: flex;
+  flex-direction: column;
+}
+
+label:first-child {
+  margin-top: 2%;
+}
+
+input:first-child{
+  margin-bottom: 0%; /*fix later*/
+}
+
+input {
+  width: 50%;
+  margin-bottom: 5%;
+  margin-top: 1%;
+  margin-left: 25%
+}
+
