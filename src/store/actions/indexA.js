@@ -15,4 +15,5 @@ export {
   signUp, */
   signedUp,
   loggedIn,
+  loggedOut,
 } from './authA';

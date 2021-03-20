@@ -43,3 +43,8 @@ export const signedUp =(token, userID) =>{
   } 
 };
 
+export const loggedOut =() =>{
+  return{
+    type: 'LOGGED_OUT'
+  } 
+};

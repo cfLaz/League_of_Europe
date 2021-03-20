@@ -5,6 +5,7 @@ const initialState ={
   token: null,
   userID:null,
   error: null,
+  
   //loading: false,
   showSignUp: false,
   showLogIn: false,
@@ -53,7 +54,10 @@ const reducer = (state = initialState, action) => {
       showSignUp: false,
     })
     case 'LOGGED_IN' || 'SIGNED_IN': return loggedIn(state,action)
-/* 
+
+    case 'LOGGED_OUT': return updateObject(state, {token: null, userID: null})
+
+    /* 
     case 'LOGGING_IN': return LogIn(state,action)
 
     case 'SIGNING_UP': return SignUp(state,action)

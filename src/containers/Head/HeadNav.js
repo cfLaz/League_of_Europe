@@ -3,6 +3,7 @@ import classes from './HeadNav.module.css';
 import {LoginWindow, SignUpWindow} from '../Auth/Auth';
 import { useDispatch, useSelector } from 'react-redux';
 import * as actions from '../../store/actions/indexA';
+import Aux from '../../Auxilary';
 
 const HeadNav = () => {
 
@@ -10,22 +11,24 @@ const HeadNav = () => {
 
   let showSignUp = useSelector(state => state.auth.showSignUp);
   let showLogIn = useSelector(state => state.auth.showLogIn);
+  let token = useSelector(state => state.auth.token);
   //add button handlers so window can be shown, lazy loaded
 
-  // const loginWindowHandler = () => {
-  //    dispatch(show());
-  //    return <LoginWindow/>;
-  //  }
- 
-  return (
-    <nav className={classes.Nav}>
-
-      <div>something</div>
-
-      <div className={classes.Title}>
-        Welcome to League of Europe
+ const Auth = () => {
+  if(token){
+    return(
+      <div className={classes.Auth}>   
+      Welcome 
+      <button onClick={() => dispatch(actions.loggedOut())}>
+          Log out
+      </button>
       </div>
 
+    )
+  }
+  else {
+    return (
+      <Aux>
       <div className={classes.Auth}>
         <button onClick={() => dispatch(actions.showSignUp() )}>
           Sign up  
@@ -36,11 +39,27 @@ const HeadNav = () => {
         </button>
       </div>
 
-      {showLogIn ? 
+       {showLogIn ? 
         <LoginWindow /> : null}
       
        {showSignUp ? 
-        <SignUpWindow /> : null}
+        <SignUpWindow /> : null} 
+
+      </Aux>
+    )
+  }
+  
+ }
+  return (
+    <nav className={classes.Nav}>
+
+      <div>something</div>
+
+      <div className={classes.Title}>
+        Welcome to League of Europe
+      </div>
+
+      {Auth()}
 
     </nav>
   )

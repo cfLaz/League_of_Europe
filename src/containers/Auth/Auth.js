@@ -20,7 +20,7 @@ import axios from 'axios';
 }
  */
 
-const signUp = (email,password,confirmPassword) => {
+const SignUp = (email,password,confirmPassword) => {
 
   if(password !== confirmPassword) return console.log('password does not match'); //handle later
 
@@ -30,11 +30,7 @@ const signUp = (email,password,confirmPassword) => {
     returnSecureToken:true
   }
 
-  axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBtN0ZxcOY4NJYrQOqArav8f_naqsS9CFA', authData)
-    .then(response => {
-      console.log(response);
-      //dispatchAction()
-    }).catch(error => console.log(error))
+  return axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBtN0ZxcOY4NJYrQOqArav8f_naqsS9CFA', authData)
 }
 
 //maybe Hook issue could be avoided If I put LogIn in LoginWindow, check it later
@@ -100,7 +96,16 @@ export const SignUpWindow = () => {
       id='signup' 
       onSubmit={(e)=> {
         e.preventDefault();
-        signUp(e.target[0].value, e.target[1].value, e.target[2].value)
+        SignUp(
+          e.target[0].value,
+          e.target[1].value,
+          e.target[2].value)
+          .then(response => {
+            console.log(response);
+            return dispatch(actions.signedUp(
+              response.data.idToken, 
+              response.data.localId));
+          }).catch(error => console.log(error))
       }}>
         
         <label > Email: </label>

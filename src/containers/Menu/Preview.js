@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classes from './Preview.module.css';
 //import NewLeague from '../../components/new league/new_league';
 import Teams from '../Teams/Teams';
@@ -8,11 +8,13 @@ import * as actions from '../../store/actions/indexA';
 //import axios from '../../axios';
 
 const Preview = () => {
+  let [leagueName, setLeagueName] = useState('');
 
   let clubs = useSelector(state => state.newLeague.selectedClubs);
   let limit = useSelector(state => state.newLeague.limit);
   //let token = useSelector(state => state.auth.token)
   let userID = useSelector(state => state.auth.userID)
+
 
   let dispatch = useDispatch();
   let removeClub= club => dispatch(actions.remove(club));
@@ -46,36 +48,55 @@ const Preview = () => {
     })
   }
   //console.log(league)
-  const startLeagueHandler = () => {
+  const startLeagueHandler = (e) => {
+    e.preventDefault();
     if(!userID) return alert('You need to log in first');
+    
     let data = {
-      clubs: league,
+      [leagueName]: league, //has to be in brackets yo
       userID: userID,
     }
+    setLeagueName('');
     return startNewLeague(JSON.stringify(data))
   }
+
+  
+  let condition = ()=>{
+    let name = document.getElementById('leagueName');
+    return !limit || name.value==='';
+  }
+ 
   return(
     <div className={classes.Preview}>
       
       <button className={classes.BackButtons}
-        onClick={()=>unload()}>
+        onClick={()=> {unload(); setLeagueName('')} }>
         Go back
       </button>
 
       <button className={classes.BackButtons}
-        onClick={()=> clearClubs()}>
+        onClick={()=> {clearClubs(); setLeagueName('')}}>
         Clear
       </button>
 
       {preview}
+      
+      <form
+        id='league'
+        onSubmit={(e) => startLeagueHandler(e)}
+      >
+        <label>Enter name of your league</label>  
+        <input id= 'leagueName' type='text' 
+          onChange={(e)=> setLeagueName(e.target.value)}/>
 
-      <button 
-      disabled={!limit} 
-      onClick={() => startLeagueHandler()}
-      className={limit ? null : classes.Start}
-      title= {!limit ? 'Need 20 clubs for the league' : null}>
-        Start the League of Europe!
-      </button>
+        <button 
+        disabled={condition()} 
+        form='league'
+        className={condition() ? null : classes.Start}
+        title= {condition() ? 'Need 20 clubs and name for the  league' : 'Start the league!'}>
+          Start the League of Europe!
+        </button>
+      </form>
 
     </div>
   );

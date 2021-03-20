@@ -1,6 +1,6 @@
 import React from 'react';
 //import Aux from '../../Auxilary';
-import classes from './new_league.module.css';
+import classes from './NewLeague.module.css';
 import teams from '../../containers/Teams/Teams';
 //import Emblem from '../Emblem/Emblem';
 
