@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {createStore, compose, applyMiddleware, combineReducers} from 'redux';
+import {BrowserRouter} from 'react-router-dom';
 import ReduxThunk from 'redux-thunk'; //to return a function that will dispatch an action, in this way we can run asyncronous code
 import {Provider} from 'react-redux';
 
@@ -28,7 +29,9 @@ const store = createStore(
 const app = (
   <Provider store={store}>
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </React.StrictMode>
   </Provider>
 )

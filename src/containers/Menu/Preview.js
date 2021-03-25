@@ -35,6 +35,7 @@ const Preview = () => {
   })
 
   let league = JSON.parse(JSON.stringify(Teams));
+  
   //filters out clubs I selected into object format that I want to send to Firebase
   if(clubs.length>0){
     Object.keys(league).map(team => {
