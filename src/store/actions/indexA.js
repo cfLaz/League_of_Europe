@@ -20,4 +20,5 @@ export {
 
 export {
   getLeagues,
+  selectLeague,
 } from './leaguesA';

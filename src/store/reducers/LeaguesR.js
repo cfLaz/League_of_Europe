@@ -13,9 +13,9 @@ const reducer = (state = initialState, action) => {
   switch(action.type){ 
 
     case 'GOT_LEAGUES': return updateObject(state, {leagues: action.leagues});
-
-    case 'COULD_NOT_GET-LEAGUES': return updateObject(state, {error: action.error});
-
+    case 'COULD_NOT_GET_LEAGUES': return updateObject(state, {error: action.error});
+    case 'SELECTED_LEAGUE': return updateObject(state, {currentLeague: action.league});
+    
     default: return state;
   }
 

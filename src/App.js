@@ -7,11 +7,15 @@ import Preview from './containers/Menu/Preview';
 import NewLeague from './components/NewLeague/NewLeague';
 //import MwG from './components/NewLeague/MatchweekGenerator';
 import {useSelector} from 'react-redux';
+import League from './containers/Playground/League';
+
 function App() {
 
   let pickingMode = useSelector(state => state.newLeague.loaded);
+  let selectedLeague = useSelector(state=>state.leagues.currentLeague);
+
   let SelectedClubs = pickingMode ? <Preview/> : null;
-  
+  let league = selectedLeague ? <League/> :null;
 
   return (
     <div className="App">
@@ -21,7 +25,7 @@ function App() {
       {SelectedClubs}
       <Pitch>
         <NewLeague/>
-
+        {league}
         
       </Pitch>
     </div>

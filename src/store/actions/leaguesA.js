@@ -41,7 +41,14 @@ const gotLeagues = (leagues)=> {
 
 const didNotGetLeagues = (error) => {
   return{
-    type: 'COULD_NOT_GET-LEAGUES',
+    type: 'COULD_NOT_GET_LEAGUES',
     error: error,
+  }
+}
+
+export const selectLeague=(league) => {
+  return{
+    type: 'SELECTED_LEAGUE',
+    league: league,
   }
 }

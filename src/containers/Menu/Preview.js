@@ -6,7 +6,7 @@ import Teams from '../Teams/Teams';
 import { useDispatch, useSelector } from 'react-redux';
 import * as actions from '../../store/actions/indexA';
 //import axios from '../../axios';
-
+import MatchWeekGenerator from '../../components/NewLeague/MatchweekGenerator';
 const Preview = () => {
   let [leagueName, setLeagueName] = useState('');
 
@@ -56,6 +56,7 @@ const Preview = () => {
     let data = {
       [leagueName]: league, //has to be in brackets yo
       userID: userID,
+      schedule: MatchWeekGenerator(league),
     }
     setLeagueName('');
     return startNewLeague(JSON.stringify(data))

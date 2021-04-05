@@ -6,7 +6,7 @@ const MWgenerator = (teams) => {
   let clubInformation=Object.values(teams);
   let clubNames=[];
   for(const club of clubInformation){
-    clubNames.push(club.emblemInfo[0]); 
+    clubNames.push(club.emblemInfo[1]); 
   }
 
   let combinations= [];
@@ -110,6 +110,7 @@ const MWgenerator = (teams) => {
     schedule['matchweek'+j].push(comb);
     if(schedule['matchweek'+j].length===10) j++;
   }
+  console.log(schedule);
   return schedule;
 }
 
