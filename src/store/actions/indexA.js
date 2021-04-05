@@ -17,3 +17,7 @@ export {
   loggedIn,
   loggedOut,
 } from './authA';
+
+export {
+  getLeagues,
+} from './leaguesA';

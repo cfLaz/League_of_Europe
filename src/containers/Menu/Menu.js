@@ -2,33 +2,49 @@ import React, {useState} from 'react';
 import classes from './Menu.module.css';
 import {Route, Redirect} from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import {Loading} from '../../store/actions/indexA';
+import * as actions from '../../store/actions/indexA';
 import LeaguesList from './LeaguesList';
 
 /* const LeaguesList = React.lazy( () => import('./LeaguesList')) */
 
 const Menu = () => {
 
-  let [leaguesPath,setLeaguesPath]= useState(null);
-
+  let [showLeagues,toggleShowLeagues]= useState(false);
+  
   let token = useSelector(state=> state.auth.token)
+  const userID = useSelector(state => state.auth.userID);
+  //let path= useSelector(state => state.leagues.path);
+  //let leagues = useSelector(state=> state.leagues.leagues);
 
   let dispatch = useDispatch();
-  let loadClubs = () => {redirectBack(); dispatch(Loading())};
+  let getLeagues = (token,userID) => dispatch(actions.getLeagues(token,userID));
 
-  const redirectToLeagues=()=>{
-    if(token) setLeaguesPath(<Redirect to='/leagues'/>);
+  let loadClubs = () => {
+    dispatch(actions.Loading())
+    toggleShowLeagues(false);
+  };
+
+  function redirectToLeagues() {
+    if(token) {
+      getLeagues(token, userID);
+      toggleShowLeagues(true);
+    }
     else alert('You need to log in first!')
   }
-  const redirectBack=()=>{
-    setLeaguesPath(<Redirect to='/'/>)
-  }
+  
+  let redirect = (showLeagues && token) ? 
+    <Redirect to='/leagues' /> :
+    <Redirect to='/'/> ;
+
+
   return(
     <aside className={classes.Menu}>
       <ul>
-        <li onClick={()=>redirectToLeagues()}>Your leagues: 
-          {leaguesPath}
+        <li onClick={()=>redirectToLeagues()}>
+          Your leagues: 
+          {redirect}
           <Route path='/leagues' component={LeaguesList}/>
+          
         </li>
         <li onClick={loadClubs}>Make a new league</li>
       </ul>
