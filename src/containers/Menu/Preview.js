@@ -53,8 +53,22 @@ const Preview = () => {
     e.preventDefault();
     if(!userID) return alert('You need to log in first');
     
+    let leagueWithStats = JSON.parse(JSON.stringify(league)); // looks as expected
+
+    for(let club in leagueWithStats){
+      leagueWithStats[club]['stats'] = {
+        played: 0,
+        draws: 0,
+        losses: 0,
+        goalsScored: 0,
+        goalsConceded: 0,
+        points: 0,
+        wins: 0,
+      }
+    }
+
     let data = {
-      [leagueName]: league, //has to be in brackets yo
+      [leagueName]: leagueWithStats, //has to be in brackets yo
       userID: userID,
       schedule: MatchWeekGenerator(league),
     }

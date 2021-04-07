@@ -24,17 +24,38 @@ let NewLeague = (props) => {
     setPreview(arr)
   } */
 
- /*  let preview = (event) => {
-    setPreview(...Preview, event)
-  }   */
-
-
   let clubList = Object.values(teams)
+
+  function getRandomNums(quantity, max){
+    const arr = []
+    while(arr.length < quantity){
+      let candidateInt = Math.floor(Math.random() * max)
+      if(arr.indexOf(candidateInt) === -1) arr.push(candidateInt)
+    }
+    return(arr)
+  }
+  const randomPick=()=>{ 
+    console.log('random pick');
+    let numbers=getRandomNums(20,50)
+    
+    for(let i=0; i<20; i++){
+      setTimeout(()=>{
+        selectClub(clubList[ numbers[i] ]);
+      }, 100*i)
+    }
+  }
 
   return (
   <div className={loaded ? null : classes.MainDiv}>
 
     <p>Pick the football clubs you want in your league!</p>
+    <p>...or choose them randomly: 
+      <button 
+        onClick={()=>randomPick()}
+        disabled={selectedClubs.length>0}>
+        Random
+      </button>
+    </p>
 
     <div className={classes.Teams}>
 

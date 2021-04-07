@@ -4,7 +4,7 @@ import {updateObject} from '../../shared/utility';
 const initialState = {
   leagues: [], // element->['leagueName', {Liverpool: {...} }]
   loading: null,
-  currentLeague: null,
+  currentLeague: null, // [same as leagues just with only one]
   error: null,
   //path: '/',
 }
