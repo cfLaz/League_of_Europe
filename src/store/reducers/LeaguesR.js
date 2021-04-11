@@ -2,7 +2,7 @@ import {updateObject} from '../../shared/utility';
 
 
 const initialState = {
-  leagues: [], // element->['leagueName', {Liverpool: {...} }]
+  leagues: [], // element->['leagueName', {Liverpool: {...} }, {mw1: []...}]
   loading: null,
   currentLeague: null, // [same as leagues just with only one]
   error: null,

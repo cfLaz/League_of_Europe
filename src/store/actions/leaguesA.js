@@ -13,16 +13,16 @@ export const getLeagues = (token, userID) => {
         for(let key in response.data){
           leagueData.push(response.data[key]);
         }
-        //console.log(leagueData); Array which holds objects
+        // console.log(leagueData); Array which holds objects (league, schedule) and userID
         for(let i=0; i<leagueData.length; i++){
-          leagues.push( Object.entries(leagueData[i])[0] )
+          let sctructure = Object.entries(leagueData[i]);
+          let league= sctructure[0];
+          league.push(sctructure[1][1]); //adding schedule
+
+          leagues.push(league);
         }
-       // leagues => ['leagueName', {Liverpool: {...} }]
+       // leagues => ['leagueName', {Liverpool: {...} }, {mw1:[]}]
         dispatch(gotLeagues(leagues));
-        /* for(let el of leagues){
-          setLeagueNames([...leagueNames, el[0] ] );
-        }
-        console.log(leagueNames); */
       }).catch(
           err => {
             console.log(err);

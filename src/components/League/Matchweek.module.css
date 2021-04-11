@@ -1,0 +1,14 @@
+.MatchweekTable {
+  position: absolute;
+  right: 0%;
+  top: 0%;
+  height: auto;
+  width: 35%;
+  border: 2px solid purple;
+  background-color: rgba(17, 17, 158, 0.59);
+}
+
+.TableRow, .TableRow td{
+  width: 30%;
+}
+
