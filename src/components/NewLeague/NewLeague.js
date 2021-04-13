@@ -2,8 +2,6 @@ import React from 'react';
 //import Aux from '../../Auxilary';
 import classes from './NewLeague.module.css';
 import teams from '../../containers/Teams/Teams';
-//import Emblem from '../Emblem/Emblem';
-
 import {useDispatch, useSelector} from 'react-redux';
 import {select} from '../../store/actions/indexA';
 

@@ -1,6 +1,8 @@
 import React from 'react';
 import classes from './Matchweek.module.css';
 import {useSelector} from 'react-redux';
+import simulate from './SimulateResults';
+import Aux from '../../Auxilary';
 
 const Matchweek=()=>{
 
@@ -14,7 +16,7 @@ const Matchweek=()=>{
 
     for(let game of mwArray){
       output.push(
-        <tr className={classes.TableRow}>
+        <tr className={classes.TableRow} key={game[0]+game[1]}>
           <td>{game[0]}</td>
           <td> : </td>
           <td>{game[1]}</td>
@@ -23,8 +25,14 @@ const Matchweek=()=>{
     }
     return output;
   }
+  /* let playMW=(mw)=>{
+    return(
+      play(mw)
+    )
+  } */
 
   return(
+    <Aux>  
     <table className={classes.MatchweekTable}> 
     <thead>
         <tr>
@@ -40,6 +48,12 @@ const Matchweek=()=>{
         {currentMW()}       
     </tbody>
     </table>
+
+      <button 
+      onClick={() => simulate(league)}
+      className={classes.PlayIt}>
+        Play it</button>
+    </Aux>
   )
 }
 
