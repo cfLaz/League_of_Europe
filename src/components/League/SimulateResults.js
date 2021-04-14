@@ -1,12 +1,19 @@
 //results should get 
 const match=(homeTeam, awayTeam)=>{
-  // Math.round(Math.random() * 20)
   let rand = () => Math.round(Math.random() * 20);
-  //let num = rand();
-  let homeGoal=0; let awayGoal=0;
-  let ATKDEFdifference = homeTeam.ATK - awayTeam.DEF;
-  let MIDdifference = homeTeam.MID - awayTeam.MID;
-  let homeAttack = ATKDEFdifference + MIDdifference;
+
+  let homeGoals=0; let awayGoals=0;
+  let homeATK = homeTeam.ATK - awayTeam.DEF;
+  let homeMID = homeTeam.MID - awayTeam.MID;
+  let homeAttack = homeATK + homeMID +2; //added +2 for home advantage
+
+  let awayATK = awayTeam.ATK - homeTeam.DEF;
+  let awayMID = homeMID *(-1);
+  let awayAttack = awayATK + awayMID -1;
+  
+  let luckFactor= rand();
+  if(luckFactor===1) homeAttack+=4;
+  else if (luckFactor===2) awayAttack+=4;
 
   const compare=(num,array)=>{
     for(let n of array){
@@ -14,195 +21,373 @@ const match=(homeTeam, awayTeam)=>{
     }
     return false;
   }
-
-  if(compare(homeAttack,[-1,0,1]) ){
-    if(rand()>10){
-      homeGoal++;
-      if(rand()>14){
-        homeGoal++;
-        if(rand()>17){
-          homeGoal++;
-          if(rand()>18){
-            homeGoal++
-            if(rand()>19){
-              homeGoal++;
-            }
-          }
-        }
-      }
-    }
-  }
-  else if (compare(homeAttack,[2,3]) ){
-    if(rand()>9){
-      homeGoal++;
-      if(rand()>14){
-        homeGoal++;
-        if(rand()>16){
-          homeGoal++;
-          if(rand()>17){
-            homeGoal++
-            if(rand()>18){
-              homeGoal++;
-            }
-          }
-        }
-      }
-    }
-  }
-  else if (compare(homeAttack,[4,5]) ){
-    if(rand()>7){
-      homeGoal++;
-      if(rand()>12){
-        homeGoal++;
-        if(rand()>15){
-          homeGoal++;
-          if(rand()>17){
-            homeGoal++
-            if(rand()>18){
-              homeGoal++;
-            }
-          }
-        }
-      }
-    }
-  }
-  else if (compare(homeAttack,[6,7]) ){
-    if(rand()>6){
-      homeGoal++;
+  const calculate=(attack)=>{
+    let goals=0;
+    if(compare(attack,[-1,0,1]) ){
       if(rand()>10){
-        homeGoal++;
+        goals++;
         if(rand()>13){
-          homeGoal++;
-          if(rand()>16){
-            homeGoal++
-            if(rand()>17){
-              homeGoal++;
+          goals++;
+          if(rand()>17){
+            goals++;
+            if(rand()>18){
+              goals++
+              if(rand()>19){
+                goals++;
+              }
             }
           }
         }
       }
     }
-  }
-  else if (compare(homeAttack,[8,9]) ){
-    if(rand()>5){
-      homeGoal++;
+    else if (compare(attack,[2,3]) ){
       if(rand()>9){
-        homeGoal++;
-        if(rand()>12){
-          homeGoal++;
+        goals++;
+        if(rand()>14){
+          goals++;
           if(rand()>16){
-            homeGoal++
+            goals++;
             if(rand()>17){
-              homeGoal++;
+              goals++
+              if(rand()>18){
+                goals++;
+              }
             }
           }
         }
       }
     }
-  }
-  else if (compare(homeAttack,[10,11]) ){
-    if(rand()>5){
-      homeGoal++;
+    else if (compare(attack,[4,5]) ){
       if(rand()>7){
-        homeGoal++;
-        if(rand()>11){
-          homeGoal++;
+        goals++;
+        if(rand()>12){
+          goals++;
           if(rand()>15){
-            homeGoal++
+            goals++;
             if(rand()>17){
-              homeGoal++;
+              goals++
+              if(rand()>18){
+                goals++;
+              }
             }
           }
         }
       }
     }
-  }
-  else if (compare(homeAttack,[12,13,14]) ){
-    if(rand()>4){
-      homeGoal++;
+    else if (compare(attack,[6,7]) ){
       if(rand()>6){
-        homeGoal++;
-        if(rand()>11){
-          homeGoal++;
-          if(rand()>13){
-            homeGoal++
-            if(rand()>16){
-              homeGoal++;
-            }
-          }
-        }
-      }
-    }
-  }
-  else if (compare(homeAttack,[15,16,17]) ){
-    if(rand()>3){
-      homeGoal++;
-      if(rand()>5){
-        homeGoal++;
+        goals++;
         if(rand()>10){
-          homeGoal++;
-          if(rand()>12){
-            homeGoal++
-            if(rand()>15){
-              homeGoal++;
+          goals++;
+          if(rand()>13){
+            goals++;
+            if(rand()>16){
+              goals++
+              if(rand()>17){
+                goals++;
+              }
             }
           }
         }
       }
     }
-  }
-  else if (compare(homeAttack,[18,19,20]) ){
-    if(rand()>3){
-      homeGoal++;
-      if(rand()>4){
-        homeGoal++;
+    else if (compare(attack,[8,9]) ){
+      if(rand()>5){
+        goals++;
         if(rand()>9){
-          homeGoal++;
+          goals++;
           if(rand()>12){
-            homeGoal++
-            if(rand()>15){
-              homeGoal++;
+            goals++;
+            if(rand()>16){
+              goals++
+              if(rand()>17){
+                goals++;
+              }
             }
           }
         }
       }
     }
-  }
-  else if (compare(homeAttack,[21,22,23]) ){
-    if(rand()>2){
-      homeGoal++;
-      if(rand()>3){
-        homeGoal++;
+    else if (compare(attack,[10,11]) ){
+      if(rand()>5){
+        goals++;
         if(rand()>7){
-          homeGoal++;
+          goals++;
           if(rand()>11){
-            homeGoal++
-            if(rand()>14){
-              homeGoal++;
+            goals++;
+            if(rand()>15){
+              goals++
+              if(rand()>17){
+                goals++;
+              }
             }
           }
         }
       }
     }
-  }
-  else if (homeAttack>23){
-    if(rand()>2){
-      homeGoal++;
-      if(rand()>3){
-        homeGoal++;
-        if(rand()>5){
-          homeGoal++;
-          if(rand()>10){
-            homeGoal++
+    else if (compare(attack,[12,13,14]) ){
+      if(rand()>4){
+        goals++;
+        if(rand()>6){
+          goals++;
+          if(rand()>11){
+            goals++;
             if(rand()>13){
-              homeGoal++;
+              goals++
+              if(rand()>16){
+                goals++;
+              }
             }
           }
         }
       }
     }
+    else if (compare(attack,[15,16,17]) ){
+      if(rand()>3){
+        goals++;
+        if(rand()>5){
+          goals++;
+          if(rand()>10){
+            goals++;
+            if(rand()>12){
+              goals++
+              if(rand()>15){
+                goals++;
+              }
+            }
+          }
+        }
+      }
+    }
+    else if (compare(attack,[18,19,20]) ){
+      if(rand()>3){
+        goals++;
+        if(rand()>4){
+          goals++;
+          if(rand()>9){
+            goals++;
+            if(rand()>12){
+              goals++
+              if(rand()>15){
+                goals++;
+              }
+            }
+          }
+        }
+      }
+    }
+    else if (compare(attack,[21,22,23]) ){
+      if(rand()>2){
+        goals++;
+        if(rand()>3){
+          goals++;
+          if(rand()>7){
+            goals++;
+            if(rand()>11){
+              goals++
+              if(rand()>14){
+                goals++;
+              }
+            }
+          }
+        }
+      }
+    }
+    else if (attack>23){
+      if(rand()>2){
+        goals++;
+        if(rand()>3){
+          goals++;
+          if(rand()>5){
+            goals++;
+            if(rand()>10){
+              goals++
+              if(rand()>13){
+                goals++;
+              }
+            }
+          }
+        }
+      }
+    }
+    else if(compare(attack,[-2,-3]) ){
+      if(rand()>11){
+        goals++;
+        if(rand()>13){
+          goals++;
+          if(rand()>16){
+            goals++;
+            if(rand()>17){
+              goals++
+              if(rand()>18){
+                goals++;
+              }
+            }
+          }
+        }
+      }
+    }
+    else if(compare(attack,[-4,-5]) ){
+      if(rand()>11){
+        goals++;
+        if(rand()>14){
+          goals++;
+          if(rand()>16){
+            goals++;
+            if(rand()>18){
+              goals++
+              if(rand()>19){
+                goals++;
+              }
+            }
+          }
+        }
+      }
+    }
+    else if(compare(attack,[-6,-7]) ){
+      if(rand()>12){
+        goals++;
+        if(rand()>14){
+          goals++;
+          if(rand()>17){
+            goals++;
+            if(rand()>18){
+              goals++
+              if(rand()>19){
+                goals++;
+              }
+            }
+          }
+        }
+      }
+    }
+    else if (compare(attack,[-8,-9]) ){
+      if(rand()>13){
+        goals++;
+        if(rand()>15){
+          goals++;
+          if(rand()>17){
+            goals++;
+            if(rand()>18){
+              goals++
+              if(rand()>19){
+                goals++;
+              }
+            }
+          }
+        }
+      }
+    }
+    else if (compare(attack,[-10,-11]) ){
+      if(rand()>15){
+        goals++;
+        if(rand()>16){
+          goals++;
+          if(rand()>17){
+            goals++;
+            if(rand()>18){
+              goals++
+              if(rand()>19){
+                goals++;
+              }
+            }
+          }
+        }
+      }
+    }
+    else if (compare(attack,[-12,-13,-14]) ){
+      if(rand()>15){
+        goals++;
+        if(rand()>17){
+          goals++;
+          if(rand()>17){
+            goals++;
+            if(rand()>18){
+              goals++
+              if(rand()>19){
+                goals++;
+              }
+            }
+          }
+        }
+      }
+    }
+    else if (compare(attack,[-15,-16,-17]) ){
+      if(rand()>16){
+        goals++;
+        if(rand()>17){
+          goals++;
+          if(rand()>17){
+            goals++;
+            if(rand()>18){
+              goals++
+              if(rand()>19){
+                goals++;
+              }
+            }
+          }
+        }
+      }
+    }
+    else if (compare(attack,[-18,-19,-20]) ){
+      if(rand()>17){
+        goals++;
+        if(rand()>17){
+          goals++;
+          if(rand()>18){
+            goals++;
+            if(rand()>19){
+              goals++
+              if(rand()>19){
+                goals++;
+              }
+            }
+          }
+        }
+      }
+    }
+    else if (compare(attack,[-21,-22,-23]) ){
+      if(rand()>17){
+        goals++;
+        if(rand()>18){
+          goals++;
+          if(rand()>18){
+            goals++;
+            if(rand()>19){
+              goals++
+              if(rand()>19){
+                goals++;
+              }
+            }
+          }
+        }
+      }
+    }
+    else if (attack<-23){
+      if(rand()>18){
+        goals++;
+        if(rand()>18){
+          goals++;
+          if(rand()>19){
+            goals++;
+            if(rand()>19){
+              goals++
+              if(rand()>19){
+                goals++;
+              }
+            }
+          }
+        }
+      }
+    }
+    return goals;
   }
-  console.log(homeGoal);
+  homeGoals = calculate(homeAttack);
+  awayGoals = calculate(awayAttack);
+
+  console.log(homeGoals, awayGoals);
+
+  return [homeTeam.emblemInfo[1], awayTeam.emblemInfo[1], homeGoals, awayGoals];
 }  
   
                 //currentLeague
@@ -227,18 +412,18 @@ const Simulate = (League) => {
         awayTeam = club;
       }
     } //works 
-    match(homeTeam, awayTeam);
+    return match(homeTeam, awayTeam);
     //should return ['lfc','bvb',2,1]
   }
 
   let results =[];
-  /* for(let game of games){
+  for(let game of games){
     results.push(combat(game[0], game[1]) )
-  } */
+  } 
 
 
   
-  combat("Sevilla", "Valencia CF");
+  console.log(results);
 }
 
 export default Simulate;
