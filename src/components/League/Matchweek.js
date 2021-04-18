@@ -6,9 +6,11 @@ import Aux from '../../Auxilary';
 
 const Matchweek=()=>{
 
+  let played = useSelector(state=> state.leagues.played);
   let league = useSelector(state => state.leagues.currentLeague);
   let schedule= JSON.parse(JSON.stringify(league[2])); //{ mw1: [ ['lfc','bvb'], [], ... [] ] ... mw38:[] }
-  let currMW = 'matchweek1';
+  let currMW = schedule.currentMatchweek;
+  
 
   let currentMW =()=> {  
     let mwArray = schedule[currMW];
@@ -18,7 +20,7 @@ const Matchweek=()=>{
       output.push(
         <tr className={classes.TableRow} key={game[0]+game[1]}>
           <td>{game[0]}</td>
-          <td> : </td>
+          <td className='result'> : </td>
           <td>{game[1]}</td>
       </tr>
       )
@@ -50,9 +52,14 @@ const Matchweek=()=>{
     </table>
 
       <button 
-      onClick={() => simulate(league)}
+      onClick={() => simulate(league, currMW)}
       className={classes.PlayIt}>
         Play it</button>
+
+      {played ? <button 
+      onClick={() => {}}
+      className={classes.PlayIt}>
+        Go to next matchweek</button> : null}
     </Aux>
   )
 }
