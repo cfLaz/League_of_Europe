@@ -41,6 +41,8 @@ let startNewLeague = (state, action) => {
   return state
 }
 
+
+
 const reducer = (state = initialState, action) => {
   switch(action.type){
 

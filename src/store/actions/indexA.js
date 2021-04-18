@@ -21,4 +21,6 @@ export {
 export {
   getLeagues,
   selectLeague,
+  updateStats,
+  MWplayed,
 } from './leaguesA';

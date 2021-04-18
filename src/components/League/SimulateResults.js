@@ -1,4 +1,6 @@
-//results should get 
+import { useDispatch, useSelector } from 'react-redux';
+import * as actions from '../../store/actions/indexA';
+
 const match=(homeTeam, awayTeam)=>{
   let rand = () => Math.round(Math.random() * 20);
 
@@ -385,18 +387,70 @@ const match=(homeTeam, awayTeam)=>{
   homeGoals = calculate(homeAttack);
   awayGoals = calculate(awayAttack);
 
-  console.log(homeGoals, awayGoals);
+  //console.log(homeGoals, awayGoals);
 
   return [homeTeam.emblemInfo[1], awayTeam.emblemInfo[1], homeGoals, awayGoals];
 }  
+
+/*create stats objects that will update in reducer :D 
+  but from here,should update firebase...
+*/
+const updateStats =(clubs, matchweekResults)=>{
   
+  let clubsCopy = Object.values(clubs);
+  
+  for(let game of matchweekResults){
+    let homeTeam = game[0]; let awayTeam = game[1];
+    let homeGoals = game[2]; let awayGoals=game[3];
+    let homeStats = {}; let awayStats = {};
+
+    for(let club of Object.values(clubs)){
+      if(club.emblemInfo[1]===homeTeam) homeStats=club.stats;
+      else if(club.emblemInfo[1]===awayTeam) awayStats=club.stats; 
+    }
+
+    homeStats.goalsScored+=homeGoals; awayStats.goalsScored+=awayGoals;
+    homeStats.goalsConceded+=awayGoals; awayStats.goalsConceded+=homeGoals;
+    homeStats.played++; awayStats.played++;
+
+    if(homeGoals===awayGoals){
+      homeStats.points++; awayStats.points++;
+      homeStats.draws++; awayStats.draws++;  
+    }
+    else if(homeGoals>awayGoals){
+      homeStats.points+=3;
+      homeStats.wins++; 
+      awayStats.losses++;  
+    }
+    else if(homeGoals<awayGoals){
+      awayStats.points+=3;
+      awayStats.wins++; 
+      homeStats.losses++;  
+    }
+    // works, homeStats and awayStats are objects with updated stats
+    // should send data from here, send stats object?  -NO STUPID, react hook can't be called in some loop
+    for(let i=0; i<clubsCopy.length; i++){
+      if(clubsCopy[i].emblemInfo[1]===homeTeam) {
+        clubsCopy[i].stats = homeStats;
+      }
+      else if(clubsCopy[i].emblemInfo[1]===awayTeam) {
+        clubsCopy[i].stats = awayStats;
+      }
+    }
+  }
+  return clubsCopy;
+}
                 //currentLeague
-const Simulate = (League) => {
+const Simulate = (League, currentMW) => {
+
+  //let played= useSelector(state => state.leagues.played);
+  let dispatch = useDispatch();
+  //let played =()=> dispatch(actions.MWplayed());
+  /* let updateStats = (clubs, results)=> dispatch(
+    actions.updateStats(clubs, results)); */
 
   let league = JSON.parse(JSON.stringify(League));
-  let mw = "matchweek1" //needs to be dynamic
-
-  let games = league[2][mw]; //[ ["Sevilla", "Valencia CF"], ...]
+  let games = league[2][currentMW]; //[ ["Sevilla", "Valencia CF"], ...]
   
   const combat=(homeSide, awaySide) => {
     let homeTeam;
@@ -419,11 +473,16 @@ const Simulate = (League) => {
   let results =[];
   for(let game of games){
     results.push(combat(game[0], game[1]) )
-  } 
-
-
+  } //works -> [ ['lfc','bvb',2,1], ...[] ]
   
-  console.log(results);
+  let resultField = document.getElementsByClassName("result");
+  for(let i=0; i< results.length; i++){
+    resultField[i].textContent = `${results[i][2]} : ${results[i][3]}`;
+  }
+  //played();
+
 }
 
 export default Simulate;
+
+//from this file, update schedule and club stats.

@@ -110,6 +110,8 @@ const MWgenerator = (teams) => {
     schedule['matchweek'+j].push(comb);
     if(schedule['matchweek'+j].length===10) j++;
   }
+  
+  schedule.currentMatchweek = 'matchweek1';
   console.log(schedule);
   return schedule;
 }

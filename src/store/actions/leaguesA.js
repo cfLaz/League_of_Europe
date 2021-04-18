@@ -16,7 +16,7 @@ export const getLeagues = (token, userID) => {
         // console.log(leagueData); Array which holds objects (league, schedule) and userID
         for(let i=0; i<leagueData.length; i++){
           let sctructure = Object.entries(leagueData[i]);
-          let league= sctructure[0];
+          let league= sctructure[0]; // ['leagueName', {} ];
           league.push(sctructure[1][1]); //adding schedule
 
           leagues.push(league);
@@ -52,3 +52,11 @@ export const selectLeague=(league) => {
     league: league,
   }
 }
+
+export const updateStats=() =>{
+  return {
+    
+  }
+}
+
+export const MWplayed=()=> {return {type: 'MATCHWEEK_PLAYED'}}
