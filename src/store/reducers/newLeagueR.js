@@ -1,5 +1,4 @@
 import {updateObject} from '../../shared/utility';
-import axios from '../../axios';
 
 let initialState={
   loaded: false,
@@ -30,12 +29,7 @@ let removeClub = (state, action) =>{
   return updateObject(state, {selectedClubs: arr, limit:false})
 }
 
-let startNewLeague = (state, action) => {
-
-  axios.post('/leagues.json', action.newLeague).then(
-    response => console.log(response)).catch(
-      error=> console.log(error))
-  
+let startNewLeague = (state, ) => {
   state.selectedClubs=[];
   state.limit=false;
   return state
@@ -56,7 +50,7 @@ const reducer = (state = initialState, action) => {
 
     case 'REMOVE_CLUB': return removeClub(state, action)
 
-    case 'START_NEW_LEAGUE': return startNewLeague(state, action)
+    case 'START_NEW_LEAGUE': return startNewLeague(state)
     
     default: return state;
   }

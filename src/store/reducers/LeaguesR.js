@@ -2,7 +2,7 @@ import {updateObject} from '../../shared/utility';
 
 
 const initialState = {
-  leagues: [], // element->['leagueName', {Liverpool: {...} }, {mw1: []...}]
+  leagues: [], // element->['leagueName', {Liverpool: {...} }, {mw1: []...}, 'leagueKey']
   loading: null,
   currentLeague: null, // [same as leagues just with only one]
   error: null,
@@ -34,7 +34,7 @@ const reducer = (state = initialState, action) => {
     case 'COULD_NOT_GET_LEAGUES': return updateObject(state, {error: action.error});
     case 'SELECTED_LEAGUE': return updateObject(state, {currentLeague: action.league});
     case 'MATCHWEEK_PLAYED': return updateObject(state, {played: true})    
-    //case 'UPDATE_STATS': return updateStats(state, action);
+    case 'UPDATE_STATS': return state/* updateStats(state, action) */;
 
     default: return state;
   }

@@ -396,15 +396,15 @@ const match=(homeTeam, awayTeam)=>{
   but from here,should update firebase...
 */
 const updateStats =(clubs, matchweekResults)=>{
-  
-  let clubsCopy = Object.values(clubs);
-  
+  console.log(matchweekResults);
+  let clubsCopy = JSON.parse(JSON.stringify(clubs));
+
   for(let game of matchweekResults){
     let homeTeam = game[0]; let awayTeam = game[1];
     let homeGoals = game[2]; let awayGoals=game[3];
     let homeStats = {}; let awayStats = {};
 
-    for(let club of Object.values(clubs)){
+    for(let club of Object.values(clubsCopy)){
       if(club.emblemInfo[1]===homeTeam) homeStats=club.stats;
       else if(club.emblemInfo[1]===awayTeam) awayStats=club.stats; 
     }
@@ -429,28 +429,31 @@ const updateStats =(clubs, matchweekResults)=>{
     }
     // works, homeStats and awayStats are objects with updated stats
     // should send data from here, send stats object?  -NO STUPID, react hook can't be called in some loop
-    for(let i=0; i<clubsCopy.length; i++){
-      if(clubsCopy[i].emblemInfo[1]===homeTeam) {
-        clubsCopy[i].stats = homeStats;
+    
+    for(let clubKey in clubsCopy){
+      if(clubsCopy[clubKey].emblemInfo[1]===homeTeam){
+        clubsCopy[clubKey].stats = homeStats;
       }
-      else if(clubsCopy[i].emblemInfo[1]===awayTeam) {
-        clubsCopy[i].stats = awayStats;
+      else if(clubsCopy[clubKey].emblemInfo[1]===awayTeam){
+        clubsCopy[clubKey].stats = awayStats;
       }
     }
   }
+  
   return clubsCopy;
 }
                 //currentLeague
 const Simulate = (League, currentMW) => {
 
   //let played= useSelector(state => state.leagues.played);
-  let dispatch = useDispatch();
+  //let dispatch = useDispatch();
   //let played =()=> dispatch(actions.MWplayed());
   /* let updateStats = (clubs, results)=> dispatch(
     actions.updateStats(clubs, results)); */
 
   let league = JSON.parse(JSON.stringify(League));
-  let games = league[2][currentMW]; //[ ["Sevilla", "Valencia CF"], ...]
+  
+  let games = league[2]['matchweek'+currentMW]; //[ ["Sevilla", "Valencia CF"], ...]
   
   const combat=(homeSide, awaySide) => {
     let homeTeam;
@@ -475,14 +478,15 @@ const Simulate = (League, currentMW) => {
     results.push(combat(game[0], game[1]) )
   } //works -> [ ['lfc','bvb',2,1], ...[] ]
   
-  let resultField = document.getElementsByClassName("result");
-  for(let i=0; i< results.length; i++){
-    resultField[i].textContent = `${results[i][2]} : ${results[i][3]}`;
-  }
   //played();
-
+  return [true, results, updateStats(league[1], results)]
 }
 
 export default Simulate;
 
 //from this file, update schedule and club stats.
+
+/* let resultField = document.getElementsByClassName("result");
+  for(let i=0; i< results.length; i++){
+    resultField[i].textContent = `${results[i][2]} : ${results[i][3]}`;
+  } */

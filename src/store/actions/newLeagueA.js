@@ -1,3 +1,6 @@
+import axios from '../../axios';
+
+
 export const Loading =() =>{
   return{type: 'LOAD_NEW_LEAGUE'} 
 };
@@ -24,9 +27,13 @@ export const remove=(club)=> {
   }
 }
 export const start =(league)=> {
+
+  axios.post('/leagues.json', league).then(
+    response => console.log(response)).catch(
+      error=> console.log(error))
+      
   return{
     type: 'START_NEW_LEAGUE',
-    newLeague: league
   }
 }
 
