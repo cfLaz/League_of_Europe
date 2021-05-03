@@ -7,25 +7,22 @@ const initialState = {
   currentLeague: null, // [same as leagues just with only one]
   error: null,
   //path: '/',
-  played: false,
+  matchweekPlayed: false,
 }
 
-/* let updateStats=(state, action)=>{
-  let currentLeagueCopy = JSON.parse(JSON.stringify(state.currentLeague));
+let updateCurrentLeague = (state)=> {
+  let name = state.currentLeague[0];
 
-  let clubs = Object.values(currentLeagueCopy[1]);
-  for(let i=0; i<clubs.length; i++){
-    if(clubs[i].emblemInfo[1]===action.homeTeam) {
-      clubs[i] = action.homeStats;
-    }
-    else if(clubs[i].emblemInfo[1]===action.awayTeam) {
-      clubs[i] = action.awayStats;
+  for(let el of state.leagues){
+    if (el[0]===name){
+      return updateObject(state, {
+        matchweekPlayed: false,
+        currentLeague: el,
+      })
     }
   }
-  currentLeagueCopy[1] = clubs;
-  console.log(currentLeagueCopy);
-  return updateObject(state, {currentLeague: currentLeagueCopy});
-} */
+
+}
 
 const reducer = (state = initialState, action) => {
   switch(action.type){ 
@@ -33,8 +30,8 @@ const reducer = (state = initialState, action) => {
     case 'GOT_LEAGUES': return updateObject(state, {leagues: action.leagues});
     case 'COULD_NOT_GET_LEAGUES': return updateObject(state, {error: action.error});
     case 'SELECTED_LEAGUE': return updateObject(state, {currentLeague: action.league});
-    case 'MATCHWEEK_PLAYED': return updateObject(state, {played: true})    
-    case 'UPDATE_STATS': return state/* updateStats(state, action) */;
+    case 'MATCHWEEK_PLAYED': return updateObject(state, {matchweekPlayed: true})    
+    case 'UPDATE_CURRENT_LEAGUE': return updateCurrentLeague(state);
 
     default: return state;
   }

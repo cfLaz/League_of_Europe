@@ -1,8 +1,7 @@
 import axios from '../../axios';
 //import {Redirect} from 'react-router-dom';
-//import { useSelector } from 'react-redux';
 
-export const getLeagues = (token, userID) => {
+export let getLeagues = (token, userID) => {
   //might wwanna include something for "loading"
   let leagueData = []; //contains objects that have league and userID
   let leagues=[]; //each element is an array which has 2 elemeents, league name and league clubs.
@@ -17,7 +16,7 @@ export const getLeagues = (token, userID) => {
           leagueData.push(response.data[key]);
           keys.push(key);
         }
-        //console.log(leagueData); //Array which holds objects (league, schedule) and userID
+        console.log('getLeagues', leagueData); //Array which holds objects (league, schedule) and userID
         for(let i=0; i<leagueData.length; i++){
           let sctructure = Object.entries(leagueData[i]);
           let league= sctructure[0]; // ['leagueName', {} ];
@@ -37,6 +36,7 @@ export const getLeagues = (token, userID) => {
 }
 
 const gotLeagues = (leagues)=> {
+  console.log('got leagues action:', leagues);
   return{
     type: 'GOT_LEAGUES',
     leagues: leagues,
@@ -52,37 +52,30 @@ const didNotGetLeagues = (error) => {
 }
 
 export const selectLeague=(league) => {
+  console.log('selected league that will update currentLeague', league)
   return{
     type: 'SELECTED_LEAGUE',
     league: league,
   }
 }
 
-export const UpdateStats=(stats, key, name, schedule/* token, userID */) =>{
-
-  //let token = useSelector(state=> state.auth.token)
-  //const userID = useSelector(state => state.auth.userID);
+export const UpdateStats=(stats, key, name, schedule,theToken, theUserID) =>{
   
-    axios.put(`/leagues/${key}/${name}.json`, stats)
-    .then(response => {
-      console.log(response);
-      //dispatch(getLeagues(token,userID));
-    }).then(
-      ()=>{
-        console.log(schedule);
-        axios.put(`/leagues/${key}/schedule.json`,schedule);
-      }
-    ).catch(
-        error=> console.log(error)
-      );
-  
-  
-   return {
+  //console.log('token: ', theToken, '\n userID:', theUserID );
+  return {
     type: 'UPDATE_STATS',
+    stats: stats,
+    key: key,
+    name: name,
+    schedule: schedule,
+    token: theToken,
+    userID: theUserID,
+
   } 
 }
-//export const updateSchedule=()
-
+export const updateCurrentLeague=()=> {
+  return {type: 'UPDATE_CURRENT_LEAGUE'}
+}
 
 
 export const MWplayed=()=> {return {type: 'MATCHWEEK_PLAYED'}}

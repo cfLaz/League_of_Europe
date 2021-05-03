@@ -1,6 +1,6 @@
-import { useDispatch, useSelector } from 'react-redux';
+/* import { useDispatch, useSelector } from 'react-redux';
 import * as actions from '../../store/actions/indexA';
-
+ */
 const match=(homeTeam, awayTeam)=>{
   let rand = () => Math.round(Math.random() * 20);
 
@@ -396,7 +396,7 @@ const match=(homeTeam, awayTeam)=>{
   but from here,should update firebase...
 */
 const updateStats =(clubs, matchweekResults)=>{
-  console.log(matchweekResults);
+  console.log('MW results from Simulate',matchweekResults);
   let clubsCopy = JSON.parse(JSON.stringify(clubs));
 
   for(let game of matchweekResults){

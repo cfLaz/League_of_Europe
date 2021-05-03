@@ -6,11 +6,14 @@ import reportWebVitals from './reportWebVitals';
 import {createStore, compose, applyMiddleware, combineReducers} from 'redux';
 import {BrowserRouter} from 'react-router-dom';
 import ReduxThunk from 'redux-thunk'; //to return a function that will dispatch an action, in this way we can run asyncronous code
+import createSagaMiddleware from 'redux-saga';
 import {Provider} from 'react-redux';
 
 import newLeagueR from './store/reducers/newLeagueR';
 import AuthR from './store/reducers/AuthR';
 import leaguesR from './store/reducers/LeaguesR';
+
+import {watchMatchWeek} from './store/sagas/indexSaga'
 
 /* const composeEnhancers = process.env.REACT_APP_NODE_ENVX === "development" ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose; */
 
@@ -22,11 +25,14 @@ const rootReducer = combineReducers({
   leagues: leaguesR, //has to match import (case sensitive)
 })
 
+const sagaMiddleware = createSagaMiddleware();
+
 const store = createStore(
   rootReducer,
-  composeEnhancers(applyMiddleware(ReduxThunk))
+  composeEnhancers(applyMiddleware(ReduxThunk, sagaMiddleware))
   );
 
+sagaMiddleware.run(watchMatchWeek);
 
 const app = (
   <Provider store={store}>
