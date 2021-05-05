@@ -1,10 +1,15 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import classes from './Table.module.css';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
+//import * as actions from '../../store/actions/indexA';
 
 const Table = () => {
   let league = useSelector(state => state.leagues.currentLeague)
-  
+  //let currMW = league[2].currentMatchweek;
+  console.log('Table rendering');
+  //let dispatch = useDispatch();
+  /* let DeclareWinner=(team)=> useCallback(()=> dispatch(actions.declareWinner(team)), [] ); */
+
   const takeData = () => {
     let teamStats =[];
     for(let club in league[1]){
@@ -42,11 +47,13 @@ const Table = () => {
       ]
       )
     }
-    //console.log('helper array', helperArray);
+    
     let outputArray = [];
     for(let i=0; i<helperArray.length; i++){
-         outputArray.push(
-         <tr className={classes.TableRow} key={'position '+(i+1)}>
+
+
+      outputArray.push(
+        <tr className={classes.TableRow} key={'position '+(i+1)}>
           <td>{i+1}</td>
           <td>{helperArray[i][0]}</td>
           <td>{helperArray[i][1]}</td>
@@ -55,11 +62,12 @@ const Table = () => {
           <td>{helperArray[i][4]}</td>
           <td>{helperArray[i][5]}</td>
           <td>{helperArray[i][6]}</td>
-        </tr>)
+        </tr>
+        )
     }
     return outputArray;
   }
-  //takeData();
+  
   return(
     <table className={classes.Table}> 
     <thead>

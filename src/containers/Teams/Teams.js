@@ -83,7 +83,7 @@ let Teams ={
       MU: {
         ATK: 84,
         MID: 85,
-        DEF: 82,
+        DEF: 83,
         emblemInfo: [mu, 'Manchester United', "Man Utd"],
       },
       Tottenham: {

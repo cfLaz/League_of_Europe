@@ -24,4 +24,5 @@ export {
   UpdateStats,
   MWplayed,
   updateCurrentLeague,
+  //declareWinner,
 } from './leaguesA';

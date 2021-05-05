@@ -22,3 +22,23 @@
   bottom: 10%;
   right: 10%;
 }
+
+.Congratulations {
+  position: absolute;
+  right: 0%;
+  top: 0%;
+  height: auto;
+  width: 35%;
+  
+  background-color: rgba(17, 17, 158, 0.261);
+}
+.Congratulations img {
+  width: 45%;
+  /* height: 50%; */
+}
+.Congratulations p {
+  color: gold;
+  font-size: large;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  
+}

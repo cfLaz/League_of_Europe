@@ -16,12 +16,15 @@ export let getLeagues = (token, userID) => {
           leagueData.push(response.data[key]);
           keys.push(key);
         }
-        console.log('getLeagues', leagueData); //Array which holds objects (league, schedule) and userID
+        console.log('getLeagues', leagueData); //Array which holds objects (league, schedule), userID nad winner(later)
         for(let i=0; i<leagueData.length; i++){
-          let sctructure = Object.entries(leagueData[i]);
-          let league= sctructure[0]; // ['leagueName', {} ];
-          league.push(sctructure[1][1]); //adding schedule
-          league.push(keys[i]);
+          let structure = Object.entries(leagueData[i]);
+          let league= structure[0]; // ['leagueName', {} ];
+          league.push(structure[1][1]); //adding schedule
+          league.push(keys[i]); //adding league key
+          if(structure[3]){
+            league.push(structure[3][1]) //adding winner
+          }
 
           leagues.push(league);
         }
@@ -77,5 +80,16 @@ export const updateCurrentLeague=()=> {
   return {type: 'UPDATE_CURRENT_LEAGUE'}
 }
 
+
+/* export const leagueFinished=()=>{
+
+} */
+
+/* export const declareWinner=(team)=>{
+  return{
+    type: 'WE_HAVE_A_WINNER',
+    winner: team,
+  }
+} */
 
 export const MWplayed=()=> {return {type: 'MATCHWEEK_PLAYED'}}

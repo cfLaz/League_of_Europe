@@ -396,7 +396,7 @@ const match=(homeTeam, awayTeam)=>{
   but from here,should update firebase...
 */
 const updateStats =(clubs, matchweekResults)=>{
-  console.log('MW results from Simulate',matchweekResults);
+  //console.log('MW results from Simulate',matchweekResults);
   let clubsCopy = JSON.parse(JSON.stringify(clubs));
 
   for(let game of matchweekResults){

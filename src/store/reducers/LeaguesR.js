@@ -21,9 +21,13 @@ let updateCurrentLeague = (state)=> {
       })
     }
   }
-
 }
+/* let addWinner = (state,action)=>{
+  let currLeague = JSON.parse(JSON.stringify(state.currentLeague));
+  currLeague[4]= action.winner;
 
+  return updateObject(state, {currentLeague: currLeague});
+} */
 const reducer = (state = initialState, action) => {
   switch(action.type){ 
 
@@ -32,6 +36,8 @@ const reducer = (state = initialState, action) => {
     case 'SELECTED_LEAGUE': return updateObject(state, {currentLeague: action.league});
     case 'MATCHWEEK_PLAYED': return updateObject(state, {matchweekPlayed: true})    
     case 'UPDATE_CURRENT_LEAGUE': return updateCurrentLeague(state);
+
+    //case 'WE_HAVE_A_WINNER': return addWinner(state,action);
 
     default: return state;
   }

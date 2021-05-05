@@ -18,6 +18,8 @@ const LeaguesList = () => {
         break;
       }
     }
+    //console.log(league);
+    //if(league[2].currentMatchweek>38) league[4] = {winner : 'a'}
     return selectedLeague(league);
   }
   return(
