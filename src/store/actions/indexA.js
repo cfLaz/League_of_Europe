@@ -4,7 +4,8 @@ export {
   select,
   remove,
   clear,
-  start
+  start,
+  showMenu,
 } from './newLeagueA';
 
 export {
@@ -13,9 +14,13 @@ export {
   cancelAuth,
   /* logIn,
   signUp, */
-  signedUp,
+  //signedUp,
   loggedIn,
   loggedOut,
+  authAttempt,
+  checkAuthTimeout,
+  authCheckState,
+  gotError,
 } from './authA';
 
 export {

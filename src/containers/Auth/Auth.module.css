@@ -13,7 +13,7 @@
   width: 50%;
   margin-top: 10%;
   margin-left: 25%;
-  height: 30%;
+  height: auto;
   background-color: rgb(221, 185, 119);
   opacity: 1;
 
@@ -29,10 +29,17 @@ input:first-child{
   margin-bottom: 0%; /*fix later*/
 }
 
-input {
+.Div input {
   width: 50%;
   margin-bottom: 5%;
   margin-top: 1%;
   margin-left: 25%
+}
+.Form button {
+  /* position: relative; */
+  height: 5%;
+  margin-bottom: 1%;
+  margin-left: 45%;
+  width: 10%;
 }
 

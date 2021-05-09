@@ -10,26 +10,33 @@ export let getLeagues = (token, userID) => {
     
     return axios.get('/leagues.json'+ queryParams).then(
       response => {
-        //console.log(response);
+        console.log(response);
         let keys=[];
         for(let key in response.data){
           leagueData.push(response.data[key]);
           keys.push(key);
         }
         console.log('getLeagues', leagueData); //Array which holds objects (league, schedule), userID nad winner(later)
-        for(let i=0; i<leagueData.length; i++){
-          let structure = Object.entries(leagueData[i]);
-          let league= structure[0]; // ['leagueName', {} ];
-          league.push(structure[1][1]); //adding schedule
-          league.push(keys[i]); //adding league key
-          if(structure[3]){
-            league.push(structure[3][1]) //adding winner
-          }
 
-          leagues.push(league);
+        if(leagueData.length===0) {
+          alert("You don't have any leagues yet")
+          return;
         }
-       // leagues => ['leagueName', {Liverpool: {...} }, {mw1:[]}]
-        dispatch(gotLeagues(leagues));
+        else{
+          for(let i=0; i<leagueData.length; i++){
+            let structure = Object.entries(leagueData[i]);
+            let league= structure[0]; // ['leagueName', {} ];
+            league.push(structure[1][1]); //adding schedule
+            league.push(keys[i]); //adding league key
+            if(structure[3]){
+              league.push(structure[3][1]) //adding winner
+            }
+  
+            leagues.push(league);
+          }
+         // leagues => ['leagueName', {Liverpool: {...} }, {mw1:[]}]
+          dispatch(gotLeagues(leagues));
+        }
       }).catch(
           err => {
             console.log(err);

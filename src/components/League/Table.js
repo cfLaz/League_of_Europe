@@ -5,35 +5,67 @@ import {useSelector, useDispatch} from 'react-redux';
 
 const Table = () => {
   let league = useSelector(state => state.leagues.currentLeague)
-  //let currMW = league[2].currentMatchweek;
-  console.log('Table rendering');
+  let currMW = league[2].currentMatchweek;
+  //console.log('Table rendering');
   //let dispatch = useDispatch();
   /* let DeclareWinner=(team)=> useCallback(()=> dispatch(actions.declareWinner(team)), [] ); */
-
-  const takeData = () => {
-    let teamStats =[];
-    for(let club in league[1]){
-      teamStats.push( 
-        [ league[1][club].emblemInfo[1], 
-          league[1][club].stats ])
-    } //works
+  
+const takeData = () => {
+  let teamStats =[];
+  for(let club in league[1]){
+    teamStats.push( 
+      [ league[1][club].emblemInfo[1], 
+        league[1][club].stats ])
+  } //works
+  console.log(teamStats);
+  
+  let sorted = []; // ['lfc',{points: x, ...}] <- elements
     
-    let sorted = []; // ['lfc',{points: x, ...}] <- elements
-    while(sorted.length<20){
-      let max=0;
-      let team=[];
-      let index=0;
-      for(let i=0; i<teamStats.length; i++){ 
-        if( teamStats[i][1].points >= max ) {
-          max = teamStats[i][1].points;
+  while(sorted.length<20){   
+
+    let maxPoints=teamStats[0][1].points;
+    let team = teamStats[0];
+    let index=0;
+    let GD= teamStats[0][1].goalsScored - teamStats[0][1].goalsConceded;
+    let goalsScored=teamStats[0][1].goalsScored
+
+    for(let i=0; i<teamStats.length; i++){ 
+      let clubStats = teamStats[i][1];
+      
+      if( clubStats.points > maxPoints ) {
+        maxPoints = clubStats.points;
+        team = teamStats[i];
+        index = i;
+        GD= clubStats.goalsScored - clubStats.goalsConceded;
+        goalsScored = clubStats.goalsScored;
+      }
+
+      else if (clubStats.points === maxPoints ){
+        if(clubStats.goalsScored - clubStats.goalsConceded > GD){
+          maxPoints = clubStats.points;
           team = teamStats[i];
           index = i;
+          GD= clubStats.goalsScored - clubStats.goalsConceded;
+          goalsScored = clubStats.goalsScored;
+        }
+        else if(clubStats.goalsScored - clubStats.goalsConceded === GD){
+          if(clubStats.goalsScored> goalsScored){
+            maxPoints = clubStats.points;
+            team = teamStats[i];
+            index = i;
+            GD= clubStats.goalsScored - clubStats.goalsConceded;
+            goalsScored = clubStats.goalsScored;
+          }
         }
       }
-      teamStats.splice(index,1);
-      sorted.push(team);
-    } 
+    }
+    teamStats.splice(index,1);
+    console.log(team);
+    sorted.push(team);
+  } 
 
+    console.log(sorted);
+  
     let helperArray =[];
     for(let i=0; i<sorted.length; i++){
       helperArray.push( [

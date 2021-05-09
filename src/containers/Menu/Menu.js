@@ -15,6 +15,8 @@ const Menu = () => {
   const userID = useSelector(state => state.auth.userID);
   //let path= useSelector(state => state.leagues.path);
   //let leagues = useSelector(state=> state.leagues.leagues);
+  let menu = useSelector(state=> state.newLeague.showMenu);
+
 
   let dispatch = useDispatch();
   let getLeagues = (token,userID) => dispatch(actions.getLeagues(token,userID));
@@ -38,6 +40,7 @@ const Menu = () => {
 
 
   return(
+    menu ?
     <aside className={classes.Menu}>
       <ul>
         <li onClick={()=>redirectToLeagues()}>
@@ -48,7 +51,7 @@ const Menu = () => {
         </li>
         <li onClick={loadClubs}>Make a new league</li>
       </ul>
-    </aside>
+    </aside> : null
   );
 };
 

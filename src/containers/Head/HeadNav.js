@@ -13,6 +13,9 @@ const HeadNav = () => {
   let showLogIn = useSelector(state => state.auth.showLogIn);
   let token = useSelector(state => state.auth.token);
   //add button handlers so window can be shown, lazy loaded
+  let menu = useSelector(state=> state.newLeague.showMenu);
+
+  let showMenu = ()=> dispatch(actions.showMenu());
 
  const Auth = () => {
   if(token){
@@ -48,12 +51,17 @@ const HeadNav = () => {
       </Aux>
     )
   }
-  
  }
+   
   return (
     <nav className={classes.Nav}>
 
-      <div>something</div>
+      <button 
+        className={classes.ShowMenu}
+        onClick={()=> showMenu()}  
+        >
+          {menu ? 'Hide Menu' : 'Show Menu'}
+      </button>
 
       <div className={classes.Title}>
         Welcome to League of Europe

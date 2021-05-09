@@ -42,3 +42,9 @@ export const limit =() =>{
       type: 'LIMIT_REACHED'
     }
 }
+
+export const showMenu=()=>{
+  return{
+    type: 'SHOW/HIDE_MENU',
+  }
+}

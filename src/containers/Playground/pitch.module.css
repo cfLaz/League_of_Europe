@@ -7,3 +7,13 @@
   float: right;
   margin-top: 1%;
 }
+
+.LargerPitch {
+  position: relative;
+  margin: 2%;
+  border: 2px dotted orange;
+  height: 85%;
+  width: 90%;
+  float: right;
+  margin-top: 1%;
+}

@@ -115,9 +115,9 @@ const match=(homeTeam, awayTeam)=>{
         goals++;
         if(rand()>7){
           goals++;
-          if(rand()>11){
+          if(rand()>12){
             goals++;
-            if(rand()>15){
+            if(rand()>16){
               goals++
               if(rand()>17){
                 goals++;
@@ -134,7 +134,7 @@ const match=(homeTeam, awayTeam)=>{
           goals++;
           if(rand()>11){
             goals++;
-            if(rand()>13){
+            if(rand()>14){
               goals++
               if(rand()>16){
                 goals++;

@@ -5,6 +5,7 @@ let initialState={
   selectedClubs: [],
   //pickingMode: false,
   limit: false, //used for determing if 20 club limit is reached
+  showMenu: true,
 }
 
  let selectClub = (state, action) => {
@@ -51,6 +52,10 @@ const reducer = (state = initialState, action) => {
     case 'REMOVE_CLUB': return removeClub(state, action)
 
     case 'START_NEW_LEAGUE': return startNewLeague(state)
+
+    case 'SHOW/HIDE_MENU': return updateObject(state, {
+      showMenu: !state.showMenu})
+    
     
     default: return state;
   }

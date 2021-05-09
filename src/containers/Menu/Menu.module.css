@@ -1,9 +1,24 @@
 .Menu {
+  z-index: 2;
   margin-top: 5%;
-  border: 2px orange dotted;
+  border-radius: 0% 10% 0% 0%;
+
+  background-image: /* linear-gradient(to bottom right, rgba(255, 0, 0, 0.82) , rgba(0, 0, 0, 0.9) 25% 75%, purple ), */
+    /*^chrome on laptop not supporting it*/
+  linear-gradient(to right, rgba(250, 128, 114, 0.809) 50%, rgba(255, 255, 255, 0.165)); 
+  
+  background: #005AA7;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #FFFDE4, #005AA7);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #FFFDE4, #0059a783); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
   height: 80%;
   width: 20%;
   float: left;
   display: flex;
+ 
+  /* transition:width .3s ease;
+  cursor:pointer;
+  box-shadow:4px 7px 10px rgba(0,0,0,.4);
+   */
   
 }

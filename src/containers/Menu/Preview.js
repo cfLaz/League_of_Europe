@@ -103,7 +103,7 @@ const Preview = () => {
       >
         <label>Enter name of your league</label>  
         <input id= 'leagueName' type='text' 
-          onChange={(e)=> setLeagueName(e.target.value)}/>
+          onChange={(e)=> setLeagueName(' '+e.target.value)}/>
 
         <button 
         disabled={condition()} 

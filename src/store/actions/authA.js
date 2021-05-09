@@ -34,7 +34,7 @@ export const loggedIn =(token, userID) =>{
     userID: userID,
   } 
 };
-
+/* 
 export const signedUp =(token, userID) =>{
   return{
     type: 'SIGNED_IN',
@@ -42,9 +42,38 @@ export const signedUp =(token, userID) =>{
     userID: userID,
   } 
 };
+ */
+export const authAttempt = (authData, type)=>{
+  return{
+    type: 'AUTH_ATTEMPT',
+    authData: authData,
+    LogInOrSignUp: type,
+  }
+}
 
 export const loggedOut =() =>{
   return{
-    type: 'LOGGED_OUT'
+    type: 'LOGGED_OUT',
+
   } 
 };
+
+export const checkAuthTimeout = (expirationTime) => {
+  return {
+      expirationTime: expirationTime,
+      type: 'AUTH_CHECK_TIMEOUT',
+  }
+}
+
+export const authCheckState =() => {
+  return{
+      type: 'AUTH_CHECK_STATE'
+  }
+}
+
+export const gotError =(error)=> {
+  return{
+    type: 'GOT_ERROR',
+    error: error,
+  }
+}

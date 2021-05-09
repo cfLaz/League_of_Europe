@@ -1,9 +1,9 @@
 import React from 'react';
 import classes from './Auth.module.css';
-import { useDispatch,} from 'react-redux';
+import { useDispatch, useSelector,} from 'react-redux';
 import * as actions from '../../store/actions/indexA';
 import axios from 'axios';
-
+import Aux from '../../Auxilary';
 /* const auth = (email,password) => {
   const dispatch = useDispatch();
 
@@ -22,15 +22,30 @@ import axios from 'axios';
 
 const SignUp = (email,password,confirmPassword) => {
 
-  if(password !== confirmPassword) return console.log('password does not match'); //handle later
+  let errorMessage = 'Passwords are not matching';
+  if(password !== confirmPassword) {
+    console.log(errorMessage);
+    return errorMessage; 
+  }
+  else if(password.length<6){
+    errorMessage='Password needs to have at least 6 characters';
+    return errorMessage;
+  }
+  const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+  errorMessage = 'Enter proper email format';
+  
+  if(!pattern.test(email)){
+    console.log(errorMessage);
+    return errorMessage;
+  }
 
   const authData ={
     email: email,
     password: password,
     returnSecureToken:true
   }
-
-  return axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBtN0ZxcOY4NJYrQOqArav8f_naqsS9CFA', authData)
+  console.log(authData);
+  return authData;
 }
 
 //maybe Hook issue could be avoided If I put LogIn in LoginWindow, check it later
@@ -40,42 +55,52 @@ const LogIn = (email,pass,) =>{
     password: pass,
     returnSecureToken:true
   }
-  return axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBtN0ZxcOY4NJYrQOqArav8f_naqsS9CFA', authData)
-  /* .then(response => {
-    console.log(response);
-    return action(response.data.idToken, response.data.localId);
-  }).catch(error => console.log(error)) */
+  return authData;
+  
 }
 
 export const LoginWindow = () => {
 
   const dispatch = useDispatch();
+  let authAttempt =(authData,type)=> dispatch(actions.authAttempt(authData, type));
+  let error = useSelector(state => state.auth.error);
 
+  let errorPreview=(err)=>{
+    if(err){
+      return (
+        <Aux>
+        <p>{err.message}</p>
+        <p>Credentials incorrect / non-existing account</p>
+        </Aux>
+      )
+    }
+  }
   return (
     <div className={classes.Div} /* onClick={(e) => {
       e.stopPropagation();
       dispatch(flip()); } } */
     >
-
       <form 
       className={classes.Form} 
       id='login' 
+      autoComplete="on"
       onSubmit={(e)=> {
         e.preventDefault();
-        LogIn(
+        let data=LogIn(
           e.target[0].value,
-          e.target[1].value)
-          .then(response => {
-            console.log(response);
-            return dispatch(actions.loggedIn(response.data.idToken, response.data.localId));
-          }).catch(error => console.log(error))
+          e.target[1].value);
+        console.log(data);  
+  
+        authAttempt(data,'LOG_IN');        
       }}>
         
+        {errorPreview(error)}
+
         <label > Email: </label>
-        <input type='text' name='username' />
+        <input type='text' name='username' autoComplete='username'/>
 
         <label> Password: </label>
-        <input type='password' name='password'/>
+        <input type='password' name='password' autoComplete="current-password"/>
 
         <button form='login'>Log in</button>
         <button onClick={() => dispatch(actions.cancelAuth()) }>Cancel</button>
@@ -86,7 +111,26 @@ export const LoginWindow = () => {
 }
 
 export const SignUpWindow = () => {
+
   const dispatch = useDispatch();
+  let authAttempt =(authData,type)=> dispatch(actions.authAttempt(authData, type));
+  
+  let gotError=(error)=> dispatch(actions.gotError(error));
+  let error = useSelector(state => state.auth.error);
+
+  let errorPreview=(err)=>{
+    if(err){
+      if(typeof(err)==='string') return(
+      <p>{err}</p>
+      )
+      else return (
+        <Aux>
+        <p>{error.message}</p>
+        <p>{`Please enter a valid email address (word@word`}+<b>'.com/.org/.net...'</b></p>
+        </Aux>
+      )
+    }
+  }
 
   return (
     <div className={classes.Div}>
@@ -94,20 +138,22 @@ export const SignUpWindow = () => {
       <form 
       className={classes.Form} 
       id='signup' 
+      autoComplete='off'
       onSubmit={(e)=> {
         e.preventDefault();
-        SignUp(
+        let data = SignUp(
           e.target[0].value,
           e.target[1].value,
-          e.target[2].value)
-          .then(response => {
-            console.log(response);
-            return dispatch(actions.signedUp(
-              response.data.idToken, 
-              response.data.localId));
-          }).catch(error => console.log(error))
+          e.target[2].value);
+        if(typeof(data)==='string'){
+          gotError(data);
+        }
+        else authAttempt(data,'SIGN_UP');
+          
       }}>
         
+        {errorPreview(error)}
+
         <label > Email: </label>
         <input type='text' name='username' />
 
