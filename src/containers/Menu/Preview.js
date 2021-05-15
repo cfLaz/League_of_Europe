@@ -9,28 +9,39 @@ import * as actions from '../../store/actions/indexA';
 import MatchWeekGenerator from '../../components/NewLeague/MatchweekGenerator';
 const Preview = () => {
   let [leagueName, setLeagueName] = useState('');
+  console.log(leagueName);
 
   let clubs = useSelector(state => state.newLeague.selectedClubs);
   let limit = useSelector(state => state.newLeague.limit);
-  //let token = useSelector(state => state.auth.token)
+  let token = useSelector(state => state.auth.token)
   let userID = useSelector(state => state.auth.userID)
-
+  let pickingMode = useSelector(state => state.newLeague.loaded);
 
   let dispatch = useDispatch();
   let removeClub= club => dispatch(actions.remove(club));
   let unload = ()=> dispatch(actions.unload());
   let clearClubs = ()=> dispatch(actions.clear());
-  let startNewLeague = league => dispatch(actions.start(league));
+  let startNewLeague = (league,token,userID) => dispatch(actions.start(league, token, userID));
+  
 
   let preview = clubs.map(club => {
     return <div key={club.emblemInfo[1]}>
             <img
             src={club.emblemInfo[0]} 
             alt={club.emblemInfo[1]} 
-            title={club.emblemInfo[2]} 
-            
+            title={club.emblemInfo[2]}
+          /> 
+          <p 
             onClick={()=>removeClub(club)}
-          /> <p>{club.emblemInfo[1]}</p> 
+            className={classes.clubName}
+            title='click to remove club'  
+          >
+            {club.emblemInfo[1]} 
+          </p> 
+
+          <p title='team strength'> 
+            ATK: {club.ATK}  MID: {club.MID}  DEF:{club.DEF}  
+          </p>
           </div>
   })
 
@@ -45,7 +56,7 @@ const Preview = () => {
         if(clubs[i].emblemInfo[1] === league[team].emblemInfo[1]) {contains=true}
       }
       if(!contains) delete league[team]
-      return null; //Added because of the warning message for map()
+      return ''; //Added because of the warning message for map()
     })
   }
   //console.log(league)
@@ -66,14 +77,15 @@ const Preview = () => {
         wins: 0,
       }
     }
+    let theLeagueName = ' '+leagueName;
 
     let data = {
-      [leagueName]: leagueWithStats, //has to be in brackets yo
+      [theLeagueName]: leagueWithStats, //has to be in brackets yo
       userID: userID,
       schedule: MatchWeekGenerator(league),
     }
     setLeagueName('');
-    return startNewLeague(JSON.stringify(data))
+    return startNewLeague(JSON.stringify(data), token, userID)
   }
 
   
@@ -81,30 +93,35 @@ const Preview = () => {
     let name = document.getElementById('leagueName');
     return !limit || name.value==='';
   }
- 
+  
+  
+  let attachedClasses = pickingMode ?
+  [classes.Preview] : [classes.Preview, classes.Close]
   return(
-    <div className={classes.Preview}>
-      
+    <div className={attachedClasses.join(' ')}> 
+
       <button className={classes.BackButtons}
-        onClick={()=> {unload(); setLeagueName('')} }>
+        onClick={()=> {setLeagueName(''); unload(); } }>
         Go back
       </button>
 
       <button className={classes.BackButtons}
-        onClick={()=> {clearClubs(); setLeagueName('')}}>
+        onClick={()=> {setLeagueName(''); clearClubs(); }}>
         Clear
       </button>
 
-      {preview}
-      
       <form
         id='league'
         onSubmit={(e) => startLeagueHandler(e)}
       >
-        <label>Enter name of your league</label>  
-        <input id= 'leagueName' type='text' 
-          onChange={(e)=> setLeagueName(' '+e.target.value)}/>
-
+  {/*  <label>Enter name of your league</label>*/}        
+        <input 
+          id= 'leagueName'
+          type='text' 
+          placeholder="Enter name of your league"
+          value={leagueName}
+          onChange={(e)=> setLeagueName(e.target.value) }
+          />
         <button 
         disabled={condition()} 
         form='league'
@@ -114,6 +131,8 @@ const Preview = () => {
         </button>
       </form>
 
+      {preview}
+     
     </div>
   );
 };

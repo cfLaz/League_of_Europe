@@ -1,50 +1,160 @@
+
 .Preview {
   /* display: flex;*/
+  font-family: 'Roboto Slab', serif;
+  z-index: 3;
   position: fixed;
   /*flex-direction: column; */
-  margin-top: 0%;
-  height: 90%;
-  width: 25%;
-  border: 1px solid red;
-  /* z-index: 1; */
-  background-color: rgb(212, 156, 240);
+  top: 1%;
+  height: 100%;
+  width: 28%;
+  background: #000046;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #000046, #1592b5);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #000046,#1592b5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
   /*flex-wrap: nowrap;
    justify-content: space-between; */
-  /* flex-basis: 30% 5%; */
-  overflow: auto;
+   border-radius: 0% 10% 0% 0%;  
+   overflow: auto;
+   scroll-behavior: smooth;
+    /*firefox*/
+   scrollbar-width: thin;          /* "auto" or "thin" */
+   scrollbar-color: blue orange;
+
+   transition: all 400ms;
+   transform: translateY(0);
 }
+
+.Close {
+  transform: translateY(+100%);
+}
+
 .BackButtons {
   /* display: inline-block; */
-  background-color: gray;
-  border: 1px solid blue;
-  border-radius: 5%;
-  width: 40%;
-  height: 5%;
-  margin: 1% 0% 0% 5%;
+  width: 30%;
+  padding: 1% 1% 1% 1%;
+  border-radius: 3px;
+  margin: 8px 8px 8px 8px;
+  color: #fbdedb;
+  background-color: #fbdedb;
+  display: inline-block;
+  background: rgba(37, 23, 160, 0.925);
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+  font-family: sans-serif;
+  font-weight: 800;
+  font-size: .85em;
+  text-align: center;
+  text-decoration: none;
+  -webkit-box-shadow: 0em -0.3rem 0em rgba(0, 0, 0, 0.1) inset;
+  -moz-box-shadow: 0em -0.3rem 0em rgba(0, 0, 0, 0.1) inset;
+  box-shadow: 0em -0.3rem 0em rgba(0, 0, 0, 0.1) inset;
+  position: relative;
+  opacity: 0.8;
 }
 .BackButtons:hover{
   cursor: pointer;
+  opacity: 1;
 } 
 
-.Preview div img {
-  width: 15%;
-  height: 100%;
-  margin-top: 1%;
+.Preview form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 }
-  
-.Preview div {
-  width: 100%;
-  height: 5%;
+  .Preview input{
+    margin: 2% 0% 2% 0%;
+    width: 60%;
+    background-color: royalblue;
+    font-family: 'Roboto Slab', Times, serif;
+    font-size: 90%;
+    text-align: center;
+  }
+  .Preview input::placeholder{
+    color:black;
+    opacity: 0.8;
+  }
+  .Preview form button {
+    padding: 1% 1% 1% 1%;
+    border-radius: 3px;
+    margin: 8px 8px 8px 8px;
+    color: #968888;
+    background-color: #fbdedb;
+    display: inline-block;
+    background: #373B44;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+    font-family: sans-serif;
+    font-weight: 800;
+    font-size: .85em;
+    text-align: center;
+    text-decoration: none;
+    -webkit-box-shadow: 0em -0.3rem 0em rgba(0, 0, 0, 0.1) inset;
+    -moz-box-shadow: 0em -0.3rem 0em rgba(0, 0, 0, 0.1) inset;
+    box-shadow: 0em -0.4rem 0em rgba(0, 0, 0, 0.1) inset;
+    position: relative;
+    opacity: 0.7;
+    cursor: not-allowed;
+  } 
+  .Preview .Start {
+    background: rgba(37, 23, 160, 0.925);  
+    cursor: pointer;
+    width: 70%;
+  }
+  .Start:hover{
+    color: #4286f4;
+    opacity: 1;    
+  }
+
+  /* emblem - name - stats*/
+.Preview div { 
+  color:whitesmoke;
+  width: 95%;
+  height: auto;
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  align-items: center;
+  justify-content: space-between;
+  margin: 3% 0% 0% 2%;
+  cursor: default;
+}
+  .Preview div img {
+    width: 12%;
+    height: 100%;
+    margin-top: 0%;
+}
+  .Preview div:hover{
+    background: radial-gradient(circle at center, rgba(255, 0, 0, 0.741) 0%, rgba(255, 255, 255, 0) 95%);
 }
 
 .Preview p {
-  margin-left: 1%;
-
+  margin: 0% 0% 0% 3%;
 }
 
-.Start:hover{
-  color: red;
+.Preview .clubName {
+  white-space: nowrap;
 }
+
+
+
+/*width*/
+ ::-webkit-scrollbar {
+   width:2%;
+ }
+/*track*/
+ ::-webkit-scrollbar-track {
+   box-shadow:inset 0 0 5px rgb(66, 162, 179);
+   border-radius:10px;
+ }
+/*thumb*/
+ ::-webkit-scrollbar-thumb {
+   background:rgb(17, 0, 255);
+   border-radius:10px;
+   border: 1px solid white;
+ }

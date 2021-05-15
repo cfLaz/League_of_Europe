@@ -21,24 +21,22 @@ const HeadNav = () => {
   if(token){
     return(
       <div className={classes.Auth}>   
-      Welcome 
-      <button onClick={() => dispatch(actions.loggedOut())}>
+            <button onClick={() => dispatch(actions.loggedOut())}>
           Log out
       </button>
       </div>
-
     )
   }
   else {
     return (
       <Aux>
       <div className={classes.Auth}>
-        <button onClick={() => dispatch(actions.showSignUp() )}>
-          Sign up  
-        </button>
-        
         <button  onClick={() => dispatch(actions.showLogIn() )}>
           Log in
+        </button>
+
+        <button onClick={() => dispatch(actions.showSignUp() )}>
+          Sign up  
         </button>
       </div>
 
@@ -60,11 +58,11 @@ const HeadNav = () => {
         className={classes.ShowMenu}
         onClick={()=> showMenu()}  
         >
-          {menu ? 'Hide Menu' : 'Show Menu'}
+          {menu ? 'Hide sidebar' : 'Show sidebar'}
       </button>
 
       <div className={classes.Title}>
-        Welcome to League of Europe
+        League of Europe
       </div>
 
       {Auth()}

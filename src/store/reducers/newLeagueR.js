@@ -6,6 +6,8 @@ let initialState={
   //pickingMode: false,
   limit: false, //used for determing if 20 club limit is reached
   showMenu: true,
+  submittingNewLeague: false,
+  error: null,
 }
 
  let selectClub = (state, action) => {
@@ -30,10 +32,17 @@ let removeClub = (state, action) =>{
   return updateObject(state, {selectedClubs: arr, limit:false})
 }
 
-let startNewLeague = (state, ) => {
-  state.selectedClubs=[];
-  state.limit=false;
-  return state
+let startNewLeague = (state) => {
+  return updateObject(state, {submittingNewLeague: true});
+}
+
+let newLeagueSubmitted=(state)=>{
+  return updateObject(state, {
+    selectedClubs: [],
+    limit: false,
+    loaded: !state.loaded,
+    submittingNewLeague: false,
+  })
 }
 
 
@@ -41,9 +50,14 @@ let startNewLeague = (state, ) => {
 const reducer = (state = initialState, action) => {
   switch(action.type){
 
-    case 'LOAD_NEW_LEAGUE' : return updateObject(state, {loaded: !state.loaded})
+    case 'LOAD_NEW_LEAGUE' : return updateObject(state, {loaded: true})
 
-    case 'UNLOAD_NEW_LEAGUE' : return updateObject(state, {loaded: !state.loaded, selectedClubs: []})
+    case 'UNLOAD_NEW_LEAGUE' : return updateObject(state, 
+      {loaded: false, 
+        selectedClubs: [],
+        limit: false,
+        error: null,
+      })
 
     case 'CLEAR_SELECTED_CLUBS': return updateObject(state, {selectedClubs:[], limit: false})
 
@@ -53,8 +67,14 @@ const reducer = (state = initialState, action) => {
 
     case 'START_NEW_LEAGUE': return startNewLeague(state)
 
+    case 'NEW_LEAGUE_SUBMITTED': return newLeagueSubmitted(state)
+
     case 'SHOW/HIDE_MENU': return updateObject(state, {
       showMenu: !state.showMenu})
+    case 'GOT_ERROR': return updateObject(state, {
+      error: action.error,
+      submittingNewLeague: false,
+    })
     
     
     default: return state;

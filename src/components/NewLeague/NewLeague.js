@@ -46,15 +46,18 @@ let NewLeague = (props) => {
   return (
   <div className={loaded ? null : classes.MainDiv}>
 
-    <p>Pick the football clubs you want in your league!</p>
+    <span className={classes.Paragraphs}>
+    <p>Pick the football clubs that you want in your league!</p>
     <p>...or choose them randomly: 
       <button 
         onClick={()=>randomPick()}
         disabled={selectedClubs.length>0}>
-        Random
+        Surprise me!
       </button>
     </p>
+    </span>
 
+    <div className={classes.wrapper}>
     <div className={classes.Teams}>
 
       {clubList.map(club => {
@@ -78,6 +81,7 @@ let NewLeague = (props) => {
           )
         return team;
       })}
+    </div>
     </div>
    {/*  <div className={classes.Preview}>
       <p>smrk... 'sup bra'h</p>

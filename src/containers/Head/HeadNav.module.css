@@ -1,22 +1,22 @@
 .Nav {
   width: 100%;
   /* background-color: blue; */
-  height: 10%;
+  height: 8%;
   display: flex;
   flex-flow: row;
   justify-content: space-between;
 }
 
-.Nav div {
-  border: 2px orange dotted;
-}
+/* .Nav div {
+   border: 2px orange dotted;
+ } */
 
 .Title {
-  font-size: 20px;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  padding: 2%;
-  color: red;
-  border-radius: 0 0 50% 50%;
+  font-size: 24px;
+  padding-top: 3px;
+  color: rgb(245, 245, 245);
+  text-shadow: 2px 2px 30px rgba(255, 255, 255, 0.707);
+  /* border-radius: 0 0 50% 50%; */
   text-align: center;
   
 }
@@ -33,11 +33,11 @@
 .ShowMenu {
   padding: 1em 2.1em 1.1em;
   border-radius: 3px;
-  margin: 8px 8px 8px 8px;
+  /* margin: 8px 8px 8px 8px; */
   color: #fbdedb;
   background-color: #fbdedb;
   display: inline-block;
-  background: #7abddfec;
+  background: #002a6ab9;
   -webkit-transition: 0.3s;
   -moz-transition: 0.3s;
   -o-transition: 0.3s;
@@ -53,6 +53,7 @@
   box-shadow: 0em -0.3rem 0em rgba(0, 0, 0, 0.1) inset;
   position: relative;
   opacity: 0.6;
+  overflow:visible;
 }
 .ShowMenu:hover {
   opacity: 1;
@@ -64,9 +65,39 @@
   -o-transform: scale(0.80);
   transform: scale(0.80);
 }
-/* .ShowMenu.block {
+
+.Auth button {
+  margin: 5%;
+  width: 40%;
+  height: 70%;
+  color: #fbdedb;
+  background-color: #fbdedb;
+/*     display: inline-block;
+*/    background: #103c52ec;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+  font-family: 'Roboto Slab', Arial, Helvetica, sans-serif;
+
+  font-size: 100%;
+  text-align: center;
+  text-decoration: none;
+  -webkit-box-shadow: 0em -0.3rem 0em rgba(0, 0, 0, 0.1) inset;
+  -moz-box-shadow: 0em -0.3rem 0em rgba(0, 0, 0, 0.1) inset;
+  box-shadow: 0em -0.3rem 0em rgba(0, 0, 0, 0.1) inset;
+  position: relative;
+  opacity: 0.8;
+  border-radius: 5%;
+}
+.Auth button:hover, .Auth button:active {
+  opacity: 1;
+}
+
+
+/*  .ShowMenu.block {
   display: block !important;
-} */
+} 
 .ShowMenu.circular {
 border-radius: 50em !important;
-}
+} */

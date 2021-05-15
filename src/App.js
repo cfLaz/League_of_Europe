@@ -10,6 +10,7 @@ import NewLeague from './components/NewLeague/NewLeague';
 import {useSelector, useDispatch} from 'react-redux';
 import League from './containers/Playground/League';
 import * as actions from './store/actions/indexA';
+import Spinner from './components/Spinner/Spinner';
 
 function App() {
 
@@ -20,23 +21,27 @@ function App() {
     autoLogin();
   }, [autoLogin])
 
-  let pickingMode = useSelector(state => state.newLeague.loaded);
+  //let pickingMode = useSelector(state => state.newLeague.loaded);
   let selectedLeague = useSelector(state=>state.leagues.currentLeague);
+  let submittingNewLeague = useSelector(state=> state.newLeague.submittingNewLeague);
 
-  let SelectedClubs = pickingMode ? <Preview/> : null;
+  //let SelectedClubs = pickingMode ? <Preview/> : null;
   let league = selectedLeague ? <League/> :null;
+  let spinner = submittingNewLeague ? <Spinner/> : null;
 
   return (
     <div className="App">
 
       <HeadNav/>
+
       <Menu/>
-      {SelectedClubs}
+      <Preview/>
       <Pitch>
         <NewLeague/>
-        {league}
-        
+        {league}  
       </Pitch>
+
+      {spinner}
     </div>
   );
 }

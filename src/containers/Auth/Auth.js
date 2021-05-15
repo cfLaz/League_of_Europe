@@ -96,7 +96,7 @@ export const LoginWindow = () => {
         
         {errorPreview(error)}
 
-        <label > Email: </label>
+        <label > Email </label>
         <input type='text' name='username' autoComplete='username'/>
 
         <label> Password: </label>
@@ -154,7 +154,7 @@ export const SignUpWindow = () => {
         
         {errorPreview(error)}
 
-        <label > Email: </label>
+        <label > Email:<span><br/>(needs to be proper format, doesn't have to be real)</span> </label>
         <input type='text' name='username' />
 
         <label> Password: </label>

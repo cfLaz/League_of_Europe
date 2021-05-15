@@ -1,24 +1,118 @@
 .Menu {
   z-index: 2;
-  margin-top: 5%;
-  border-radius: 0% 10% 0% 0%;
 
-  background-image: /* linear-gradient(to bottom right, rgba(255, 0, 0, 0.82) , rgba(0, 0, 0, 0.9) 25% 75%, purple ), */
-    /*^chrome on laptop not supporting it*/
-  linear-gradient(to right, rgba(250, 128, 114, 0.809) 50%, rgba(255, 255, 255, 0.165)); 
-  
-  background: #005AA7;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #FFFDE4, #005AA7);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #FFFDE4, #0059a783); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-  height: 80%;
-  width: 20%;
-  float: left;
   display: flex;
+  flex-flow: column wrap;
+  align-items:center;
+
+  margin-top: 2%;
+  border-radius: 0% 10% 0% 0%;
+  
+  background: #000046;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #000046, #1592b5);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #000046,#1592b5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+  height: 88%;
+  width: 18%;
+  float: left;
  
-  /* transition:width .3s ease;
-  cursor:pointer;
-  box-shadow:4px 7px 10px rgba(0,0,0,.4);
-   */
+  overflow: auto;
+  transition: all 500ms;
+
+  text-align: center;
+  color: whitesmoke;
+}
+.Open {
+  transform: translateZ(0) translateX(0);
+}
+.Close {
+  transform: translateX(-90%);
+}
+
+  .Menu  button{
+    /* padding: 5% 5% 5% 5%; */
+    margin: 10% 5% 5% 5%;
+    /* width: 70%;
+    height: 8%; */
+    padding: 2%;
+    color: #fbdedb;
+    background-color: #fbdedb;
+/*     display: inline-block;
+ */    background: #103c52ec;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+    font-family: 'Roboto Slab', Arial, Helvetica, sans-serif;
+
+    font-size: 100%;
+    text-align: center;
+    text-decoration: none;
+    -webkit-box-shadow: 0em -0.3rem 0em rgba(0, 0, 0, 0.1) inset;
+    -moz-box-shadow: 0em -0.3rem 0em rgba(0, 0, 0, 0.1) inset;
+    box-shadow: 0em -0.3rem 0em rgba(0, 0, 0, 0.1) inset;
+    position: relative;
+    opacity: 0.8;
+    border-radius: 5%;
+    cursor: pointer;
+    border-radius: 10%;
+  }
+  .Menu button:hover, .Menu button:active{
+    opacity: 1;
+  }
+  .Menu button:active{
+    -webkit-transform: scale(0.80);
+    -moz-transform: scale(0.80);
+    -ms-transform: scale(0.80);
+    -o-transform: scale(0.80);
+    transform: scale(0.80);
+  }
+
+.Menu 
+/************************/
+
+.Menu ul {
+  /* margin: 10% 5% 5% 1%; */
+  overflow: auto;
+  list-style-type: none;
+  cursor: pointer;
+  /* text-align: center; */
+ /*  margin-left: 5%; */
+}
+
+.Menu li {
+  height: 25px;
+/*   float: left;*/ 
+  padding: 0 20px;
+  margin-top: 2%;
+  text-decoration: none;
+  color: #ccc;
+/*   font: 25px/1 Helvetica, Verdana, sans-serif; */
+  transition: all 300ms;
+  -webkit-transition: all 0.5s ease;
+  text-align: right;
+  list-style: none;
+}
+.Menu p {
+  text-align: left;
+  cursor: pointer;
+} 
+.Menu:last-child{
+  border-right: none;
+}
+.Menu li:hover{
+  text-decoration: solid;
+  color: yellow;
+  cursor:alias;
+}
+.Menu li li:hover{
+  text-decoration: solid;
+  color: orangered;
+}
+.Menu li:active{
+  font-weight: bold;
+  transition: 0.4s;
+  transform: translateZ(0), translateX(0);
   
 }

@@ -4,33 +4,72 @@ import {useSelector, useDispatch} from 'react-redux';
 import Simulate from './SimulateResults';
 import Aux from '../../Auxilary';
 import * as actions from '../../store/actions/indexA';
+import Spinner from '../Spinner/Spinner';
 import trophy from '../../images/trophy.png';
+
+
+
 const Matchweek=()=>{
                         // [boolean, clubs stats, schedule]
   let [Data, getData] = useState([false, [], {}])
+  let [showDelete, toggleShowDelete] = useState(false);
 
   let token = useSelector(state=> state.auth.token)
   const userID = useSelector(state => state.auth.userID);
   let played = useSelector(state=> state.leagues.matchweekPlayed);
   let league = useSelector(state => state.leagues.currentLeague);
+  let loading = useSelector(state=> state.leagues.loading);
+ 
+
   let schedule= JSON.parse(JSON.stringify(league[2])); //{ mw1: [ ['lfc','bvb'], [], ... [] ] ... mw38:[] }
   let currMW = schedule.currentMatchweek;
-  
+  let clubs = JSON.parse(JSON.stringify(league[1]));
+
   let dispatch = useDispatch();
   let play =()=> dispatch(actions.MWplayed());
   let updateStats =(stats, key, name, schedule, token, userID)=> dispatch(actions.UpdateStats(stats, key, name, schedule, token, userID));
   //let getLeagues = (token,userID) => dispatch(actions.getLeagues(token,userID));
+  let deleteLeague=(leagueKey, token)=> dispatch(actions.deleteLeague(leagueKey, token));
+
   let currentMW =()=> {  
     if(currMW<39){
-
+      
       let mwArray = schedule['matchweek'+currMW];
       let output =[];
       for(let game of mwArray){
+
+        let homeEmblem;
+        let awayEmblem;
+        for(let club in clubs){
+          if(!homeEmblem && (clubs[club].emblemInfo[1]===game[0]) ){
+            homeEmblem= clubs[club].emblemInfo[0];
+          }
+          else if(!awayEmblem && (clubs[club].emblemInfo[1]===game[1]) ){
+            awayEmblem= clubs[club].emblemInfo[0];
+          }
+        }
+
         output.push(
           <tr className={classes.TableRow} key={game[0]+game[1]}>
-            <td>{game[0]}</td>
-            <td className='result'> : </td>
-            <td>{game[1]}</td>
+            
+            <td>
+              {game[0]} 
+            </td>
+            <td>
+              <img src={homeEmblem} alt='' 
+                className={classes.homeEmblem}/> 
+            </td>
+
+            <td className={['result', classes.Results].join(' ')}> : </td>
+
+            <td>
+              <img src={awayEmblem} alt=''
+                className={classes.awayEmblem}/> 
+            </td>
+            <td>
+              {game[1]}
+            </td>
+
           </tr>
         )
       }
@@ -50,13 +89,75 @@ const Matchweek=()=>{
     return schedule; 
   }
 
-
-
   if(played){
     for(let i=0; i< Data[1].length; i++){
       resultField[i].textContent = 
       `${Data[1][i][2]} : ${Data[1][i][3]}`;
     }
+  }
+
+  let buttons = () => {
+
+    if(loading) return <Spinner/>
+
+    else {
+
+      if(!played) {
+        return <button  
+                  disabled={played}
+                  onClick={() => {
+
+                  getData(Simulate(league,currMW));
+                  play(); 
+                  }}
+                  className={classes.Buttons}>
+                  Play it
+               </button>
+      }
+      else{
+        return <button 
+                  onClick={() => {
+                    let leagueKey = league[3];
+                    let leagueName = league[0];
+        
+                    updateStats(Data[2], leagueKey, leagueName, updateMW(Data[1]), token, userID);
+                    }}
+                    className={classes.Buttons}>
+                    Update table and go to next matchweek
+                </button>
+      }
+    }
+  }
+
+  let deleteButton =()=>{
+    return <button 
+            className={classes.DeleteButton} 
+            disabled={loading}
+            onClick={()=> toggleShowDelete(true)}
+            >
+            Delete the league
+          </button>
+  }
+  let showDeleteWindow=()=>{
+
+    let deleteWindow = showDelete ? 
+    <div className={classes.DeleteWrapper}>
+    <div className={classes.DeleteWindow}>
+      <p>Are you sure that you want to delete <span>{league[0]}</span> ? </p>
+
+      <button onClick={()=> {
+        deleteLeague(league[3], token)
+        toggleShowDelete(false)
+        }}
+        >Yes!
+      </button>
+
+      <button onClick={()=> {
+        toggleShowDelete(false)
+        }}>Noo! It's too painful.</button>
+
+    </div></div> : null;
+    return deleteWindow;
   }
 
   if(currMW<39){
@@ -66,39 +167,27 @@ const Matchweek=()=>{
       <table className={classes.MatchweekTable}> 
       <thead>
           <tr>
-              <th colSpan="3"> Matchweek {currMW} </th>
+              <th colSpan="5"> Matchweek {currMW} </th>
           </tr>
       </thead>
       <tbody>
-          <tr className={classes.TableRow}>
+          <tr className={[classes.TableRow, classes.ColumnDescription].join(' ')}>
               <td>Home team</td>
+              <td></td>
               <td>Result</td>
+              <td></td>
               <td>Away team</td>
           </tr>
           {currentMW()}       
       </tbody>
+      <tfoot>
+        {buttons()}
+      </tfoot>
       </table>
       
-        <button  
-          disabled={played}
-          onClick={() => {
-  
-            getData(Simulate(league,currMW));
-            play(); 
-          }}
-          className={classes.PlayIt}>
-          Play it
-        </button>
-  
-        {played ? <button 
-        onClick={() => {
-          let leagueKey = league[3];
-          let leagueName = league[0];
-          
-          updateStats(Data[2], leagueKey, leagueName, updateMW(Data[1]), token, userID);
-        }}
-        className={classes.NextMW}>
-          Update table and go to next matchweek</button> : null}
+      {deleteButton()}
+      {showDeleteWindow()}
+        
       </Aux>
     )
   }
@@ -120,12 +209,17 @@ const Matchweek=()=>{
     }
     //console.log(emblem);
     return(
+      <Aux>
       <div className={classes.Congratulations}>
-        <p>Congratulations to {winner} for winning the {league[0]} league</p>
+        <p>Congratulations to <span>{winner}</span> for winning the <span>{league[0]}</span> league</p>
 
         <img alt='Trophy' src={trophy}/>
         {emblem}
       </div>
+
+      {deleteButton()}
+      {showDeleteWindow()}
+      </Aux>
     )
   } 
   

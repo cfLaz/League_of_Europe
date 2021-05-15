@@ -1,14 +1,15 @@
 import React from 'react';
 import {useSelector, useDispatch } from 'react-redux';
 import * as actions from '../../store/actions/indexA';
+import Aux from '../../Auxilary';
 
 const LeaguesList = () => {
   console.log('rendering LeaguesList component')
 
   let leagues = useSelector(state=> state.leagues.leagues);
-  
   const dispatch = useDispatch();
   let selectedLeague = (league)=> dispatch(actions.selectLeague(league));
+  
   
   const selectLeague=(leagueName)=>{
     let league;
@@ -23,17 +24,23 @@ const LeaguesList = () => {
     return selectedLeague(league);
   }
   return(
-    <ul>
+    <Aux>
       {leagues.map(league => {
         return (
+          <Aux>
           <li 
             key={league[0]}
             onClick={()=> selectLeague(league[0])}
           >
             {league[0]}
-          </li>)
+            {/* <span key={league[3]} onClick={()=> {deleteLeague(league[3], token)}}>
+              delete
+            </span> */}
+          </li>
+          </Aux>
+          )
       })}
-    </ul>
+    </Aux>
     )
   
 }

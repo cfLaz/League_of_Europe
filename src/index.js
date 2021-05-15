@@ -13,7 +13,7 @@ import newLeagueR from './store/reducers/newLeagueR';
 import AuthR from './store/reducers/AuthR';
 import leaguesR from './store/reducers/LeaguesR';
 
-import {watchMatchWeek, watchAuth} from './store/sagas/indexSaga'
+import {watchUpdates, watchAuth} from './store/sagas/indexSaga'
 
 /* const composeEnhancers = process.env.REACT_APP_NODE_ENVX === "development" ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose; */
 
@@ -33,7 +33,7 @@ const store = createStore(
   );
 
 sagaMiddleware.run(watchAuth);
-sagaMiddleware.run(watchMatchWeek);
+sagaMiddleware.run(watchUpdates);
 
 const app = (
   <Provider store={store}>

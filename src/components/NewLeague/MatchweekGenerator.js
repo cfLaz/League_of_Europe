@@ -113,9 +113,67 @@ const MWgenerator = (teams) => {
   
   schedule.currentMatchweek = 1;
   //console.log(schedule);
+  console.log(schedule);
   return schedule;
 }
 
 
 
 export default MWgenerator;
+
+/**Testing: 
+ 
+
+
+
+x=0
+i=0
+while(combinations.length>0){
+	let comb=combinations[i];
+    let j=1;
+    while(j<39){
+      
+      let mw = schedule['matchweek'+j];
+      if(mw.length===10) {
+        j++;
+        continue;
+      }
+
+      else if(mw.length===0) {
+        mw.push(comb);
+		combinations.splice(i,1);
+        break;
+      }
+
+      let contains=false;   
+      for(let game of mw){
+        if(comb[0]===game[0] || comb[1]===game[0] || 
+          comb[0]===game[1] || comb[1]===game[1]){
+            contains=true;
+            break;
+          }  
+      }
+      if(!contains){
+        mw.push(comb);
+		combinations.splice(i,1);
+        break;
+      }
+	  else {j++}
+    }
+	if(combinations.length-1<=i) {i=0; x++}
+	else{i++}
+	if(x===500) break;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+*/

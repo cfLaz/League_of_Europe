@@ -1,19 +1,25 @@
-.Pitch {
-  position: relative;
-  margin-left:1%;
-  border: 2px dotted orange;
-  height: 85%;
+.Pitch, .SidebarPitch {
+  position: fixed;
+  margin: 1% 0% 0% 5%;
+/*   border: 2px dotted orange;*/  
+  height: 87%;
   width: 78%;
   float: right;
-  margin-top: 1%;
+  right: 1%;
+  transition: all 500ms;
+}
+
+.SidebarPitch{
+  width: 80%;
 }
 
 .LargerPitch {
-  position: relative;
-  margin: 2%;
-  border: 2px dotted orange;
-  height: 85%;
-  width: 90%;
+  position: fixed;
+  margin: 1% 0% 0% 7%; 
+/*   border: 2px dotted orange;
+ */  height: 85%;
+  width: 92%;
   float: right;
-  margin-top: 1%;
+  right: 1%;
+  transition: all 500ms;
 }

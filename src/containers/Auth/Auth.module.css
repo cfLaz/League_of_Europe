@@ -14,11 +14,12 @@
   margin-top: 10%;
   margin-left: 25%;
   height: auto;
-  background-color: rgb(221, 185, 119);
+  background-color: #103c52ec;
   opacity: 1;
-
+  border-radius: 10%;
   display: flex;
   flex-direction: column;
+  color: whitesmoke
 }
 
 label:first-child {
@@ -29,12 +30,17 @@ input:first-child{
   margin-bottom: 0%; /*fix later*/
 }
 
-.Div input {
+.Form input {
   width: 50%;
   margin-bottom: 5%;
   margin-top: 1%;
-  margin-left: 25%
+  margin-left: 25%;
+  background-color: lightblue,  
 }
+.Form span {
+  font-family: sans-serif;
+}
+
 .Form button {
   /* position: relative; */
   height: 5%;

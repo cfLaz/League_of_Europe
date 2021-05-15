@@ -6,10 +6,17 @@ import classes from './pitch.module.css';
 
 let Pitch =(props) => {
 
-  let menu= useSelector(state=> state.newLeague.showMenu);
+  let showSidebar= useSelector(state=> state.newLeague.showMenu);
+  let loadedNewLeagueScreen = useSelector(state=> state.newLeague.loaded)
+
+  let pitchClass = classes.SidebarPitch;
+  if(loadedNewLeagueScreen){
+    pitchClass = classes.Pitch;
+  }
+
 
   return (
-    <main className={menu ? classes.Pitch : classes.LargerPitch}>
+    <main className={showSidebar ? pitchClass : classes.LargerPitch}>
       {props.children}
     </main>
   )

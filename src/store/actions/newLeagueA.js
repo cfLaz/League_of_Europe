@@ -26,14 +26,21 @@ export const remove=(club)=> {
     removedClub: club
   }
 }
-export const start =(league)=> {
+export const start =(league,token,userID)=> {
 
-  axios.post('/leagues.json', league).then(
-    response => console.log(response)).catch(
-      error=> console.log(error))
-      
   return{
     type: 'START_NEW_LEAGUE',
+    league: league,
+    token: token,
+    userID: userID,
+  }
+}
+
+export const submitted=(token, userID)=>{
+  return{
+    type: 'NEW_LEAGUE_SUBMITTED',
+    token: token,
+    userID: userID,
   }
 }
 
@@ -46,5 +53,12 @@ export const limit =() =>{
 export const showMenu=()=>{
   return{
     type: 'SHOW/HIDE_MENU',
+  }
+}
+
+export const gotError=(error)=>{
+  return {
+    type: 'GOT_ERROR',
+    error: error,
   }
 }
