@@ -129,6 +129,9 @@ background: linear-gradient(to right, #000046,#1592b5); /* W3C, IE 10+/ Edge, Fi
     height: 100%;
     margin-top: 0%;
 }
+  .Preview img + p {
+    cursor:crosshair;
+  }
   .Preview div:hover{
     background: radial-gradient(circle at center, rgba(255, 0, 0, 0.741) 0%, rgba(255, 255, 255, 0) 95%);
 }

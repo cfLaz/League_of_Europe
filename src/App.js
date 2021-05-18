@@ -29,8 +29,19 @@ function App() {
   let league = selectedLeague ? <League/> :null;
   let spinner = submittingNewLeague ? <Spinner/> : null;
 
+  let fireworks=null;
+  if(selectedLeague)
+  if(selectedLeague[2].currentMatchweek ===39) {
+    fireworks = 
+    <div className='pyro'>
+        <div className='before'></div>
+        <div className='after'></div>
+    </div>
+  }
+  
   return (
     <div className="App">
+      {fireworks}
 
       <HeadNav/>
 

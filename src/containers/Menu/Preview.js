@@ -9,7 +9,6 @@ import * as actions from '../../store/actions/indexA';
 import MatchWeekGenerator from '../../components/NewLeague/MatchweekGenerator';
 const Preview = () => {
   let [leagueName, setLeagueName] = useState('');
-  console.log(leagueName);
 
   let clubs = useSelector(state => state.newLeague.selectedClubs);
   let limit = useSelector(state => state.newLeague.limit);

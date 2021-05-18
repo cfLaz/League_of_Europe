@@ -70,52 +70,62 @@ const MWgenerator = (teams) => {
     i++;
   }
 
-  //saved for later, don't have the solution for now, will have to use improper schedule
-/*   for(let comb of combinations){
-    let j=1;
-    while(j<39){
-      
-      let mw = schedule['matchweek'+j];
-      if(mw.length===10) {
-        j++;
-        continue;
-      }
+  let x=0
+  i=0
+  while(combinations.length>0){
+  	let comb=combinations[i];
+      let j=1;
+      while(j<39){
 
-      else if(mw.length===0) {
-        mw.push(comb);
-        break;
-      }
+        let mw = schedule['matchweek'+j];
+        if(mw.length===10) {
+          j++;
+          continue;
+        }
 
-      let contains=false;   
-      for(let game of mw){
-        if(comb[0]===game[0] || comb[1]===game[0] || 
-          comb[0]===game[1] || comb[1]===game[1]){
-            contains=true;
-            break;
-          }  
+        else if(mw.length===0) {
+          mw.push(comb);
+  		    combinations.splice(i,1);
+          break;
+        }
+
+        let contains=false;   
+        for(let game of mw){
+          if(comb[0]===game[0] || comb[1]===game[0] || 
+            comb[0]===game[1] || comb[1]===game[1]){
+              contains=true;
+              break;
+            }  
+        }
+        if(!contains){
+          mw.push(comb);
+  		    combinations.splice(i,1);
+          break;
+        }
+  	    else j++;
       }
-      if(!contains){
-        mw.push(comb);
-        break;
-      }
-      j++;
+  	if(combinations.length-1<=i) {i=0; x++}
+  	else{i++}
+
+  	if(x===5) break;
     }
-    console.log(schedule);
-  } */
 
-  //console.log(schedule);
-  //console.log(combinations);
-  let j = 1;
-  for(let comb of combinations){
-    schedule['matchweek'+j].push(comb);
-    if(schedule['matchweek'+j].length===10) j++;
+    for(let comb of combinations){
+      for(let j=1; j<39; j++){
+        let mw = schedule['matchweek'+j];
+        if(mw.length!==10) {
+          mw.push(comb);
+          break;
+        }      
+      }
+    }
+
+    console.log(combinations);
+    schedule.currentMatchweek = 1;
+
+    console.log(schedule);
+    return schedule;
   }
-  
-  schedule.currentMatchweek = 1;
-  //console.log(schedule);
-  console.log(schedule);
-  return schedule;
-}
 
 
 

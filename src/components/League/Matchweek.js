@@ -5,7 +5,7 @@ import Simulate from './SimulateResults';
 import Aux from '../../Auxilary';
 import * as actions from '../../store/actions/indexA';
 import Spinner from '../Spinner/Spinner';
-import trophy from '../../images/trophy.png';
+import trophy from '../../images/trophyy.png';
 
 
 
@@ -28,7 +28,7 @@ const Matchweek=()=>{
   let dispatch = useDispatch();
   let play =()=> dispatch(actions.MWplayed());
   let updateStats =(stats, key, name, schedule, token, userID)=> dispatch(actions.UpdateStats(stats, key, name, schedule, token, userID));
-  //let getLeagues = (token,userID) => dispatch(actions.getLeagues(token,userID));
+
   let deleteLeague=(leagueKey, token)=> dispatch(actions.deleteLeague(leagueKey, token));
 
   let currentMW =()=> {  

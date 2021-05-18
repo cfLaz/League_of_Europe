@@ -47,8 +47,8 @@
     font-family: 'Roboto Slab', Arial, Helvetica, sans-serif;
 
     font-size: 100%;
-    text-align: center;
-    text-decoration: none;
+/*     text-align: center;
+ */    text-decoration: none;
     -webkit-box-shadow: 0em -0.3rem 0em rgba(0, 0, 0, 0.1) inset;
     -moz-box-shadow: 0em -0.3rem 0em rgba(0, 0, 0, 0.1) inset;
     box-shadow: 0em -0.3rem 0em rgba(0, 0, 0, 0.1) inset;
@@ -95,8 +95,8 @@
   list-style: none;
 }
 .Menu p {
-  text-align: left;
-  cursor: pointer;
+/*   text-align: left;
+ */  cursor: pointer;
 } 
 .Menu:last-child{
   border-right: none;

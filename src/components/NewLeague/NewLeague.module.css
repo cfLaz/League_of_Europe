@@ -39,6 +39,9 @@
     -o-transform: scale(0.80);
     transform: scale(0.80);
   }
+  .Paragraphs [disabled] {
+    cursor:not-allowed;
+  }
 
  .wrapper{
   position: absolute;
