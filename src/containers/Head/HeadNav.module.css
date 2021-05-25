@@ -1,7 +1,7 @@
 .Nav {
   width: 100%;
   /* background-color: blue; */
-  height: 8%;
+  height: 7%;
   display: flex;
   flex-flow: row;
   justify-content: space-between;
@@ -20,15 +20,6 @@
   text-align: center;
   
 }
-
-.Auth {
-  width: 15%;
-}
-
-.Auth button {
-  margin-right: 5%;
-}
-
 
 .ShowMenu {
   padding: 1em 2.1em 1.1em;
@@ -66,6 +57,11 @@
   transform: scale(0.80);
 }
 
+
+.Auth {
+  width: 15%;
+}
+
 .Auth button {
   margin: 5%;
   width: 40%;
@@ -101,3 +97,41 @@
 .ShowMenu.circular {
 border-radius: 50em !important;
 } */
+
+@media(orientation: portrait){
+
+  .Nav {
+    height: 10%;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+  }
+  .Nav .Auth {
+    width: 30%;
+  }
+  
+  .Nav .Title {
+    font-size: 16px;
+    padding-top: 3px;
+    color: rgb(245, 245, 245);
+    text-shadow: 2px 2px 30px rgba(255, 255, 255, 0.707);
+    /* border-radius: 0 0 50% 50%; */
+    text-align: center;
+    margin-top: 5%;
+  }
+  
+  
+  .Nav .Auth button {
+    margin: 5%;
+    font-size: 12px;
+  }
+  
+  .Nav .ShowMenu {
+    width: 25%;
+    font-size: 12px;
+    opacity: 0.8;
+    padding: 1%;
+    height: 90%;
+  }
+
+}

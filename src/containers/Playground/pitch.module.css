@@ -2,11 +2,12 @@
   position: fixed;
   margin: 1% 0% 0% 5%;
 /*   border: 2px dotted orange;*/  
-  height: 87%;
+  height: 88%;
   width: 78%;
   float: right;
   right: 1%;
   transition: all 500ms;
+  overflow: auto;
 }
 
 .SidebarPitch{
@@ -15,11 +16,29 @@
 
 .LargerPitch {
   position: fixed;
-  margin: 1% 0% 0% 7%; 
+  margin: 1% 0% 0% 6%; 
 /*   border: 2px dotted orange;
- */  height: 85%;
+ */  height: 88%;
   width: 92%;
   float: right;
   right: 1%;
   transition: all 500ms;
+  overflow: auto;
 }
+
+@media(orientation: portrait) {
+  .Pitch, .SidebarPitch{  
+    position: relative;
+    margin: 1% 0% 0% 5%;
+  /*border: 2px dotted orange; */
+    height:auto;
+    width: 98%;
+    right: 1%;
+    transition: all 500ms;
+    float: none;
+    overflow: visible;
+  }
+  .SidebarPitch{
+    width: 80%;
+  }
+} 

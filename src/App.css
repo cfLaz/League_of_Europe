@@ -191,8 +191,14 @@
     margin-top: 30%;
     margin-left: 80%; } }
 
+@media(orientation: portrait)  {
 
-
+  .App{
+    background: rgb(27, 180, 191);
+    overflow: scroll;
+  }
+ 
+} 
 
 
 

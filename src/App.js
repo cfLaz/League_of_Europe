@@ -1,5 +1,5 @@
 //import logo from './logo.svg';
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import './App.css';
 import HeadNav from './containers/Head/HeadNav';
 import Menu from './containers/Menu/Menu';
@@ -25,8 +25,7 @@ function App() {
   let selectedLeague = useSelector(state=>state.leagues.currentLeague);
   let submittingNewLeague = useSelector(state=> state.newLeague.submittingNewLeague);
 
-  //let SelectedClubs = pickingMode ? <Preview/> : null;
-  let league = selectedLeague ? <League/> :null;
+  let league = selectedLeague ? <League /> :null;
   let spinner = submittingNewLeague ? <Spinner/> : null;
 
   let fireworks=null;
@@ -38,9 +37,9 @@ function App() {
         <div className='after'></div>
     </div>
   }
-  
+ 
   return (
-    <div className="App">
+    <div className='App'>
       {fireworks}
 
       <HeadNav/>
@@ -50,7 +49,7 @@ function App() {
       <Pitch>
         <NewLeague/>
         {league}  
-      </Pitch>
+      </Pitch >
 
       {spinner}
     </div>

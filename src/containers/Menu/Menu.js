@@ -28,6 +28,7 @@ const Menu = () => {
   let loadClubs = () => {
     dispatch(actions.Loading())
     dispatch(actions.hideLeaguesList());
+    dispatch(actions.showMenu())
   };
 
   function redirectToLeagues() {
@@ -41,7 +42,7 @@ const Menu = () => {
     else alert('You need to log in first!')
   }
   
-  let spinner = gettingLeagues ? <Spinner/> : null;
+  let spinner = gettingLeagues ? <Spinner key='spinner'/> : null;
 
   let redirect = (showLeaguesList && token && spinner===null) ? 
     <Redirect to='/leagues' /> :
@@ -64,6 +65,7 @@ const Menu = () => {
               redirectToLeagues();
             }
             }
+            key={'yourLeagues'}
           >   Your leagues:
           </p>
           {spinner} 

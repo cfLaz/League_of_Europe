@@ -1,24 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classes from './Auth.module.css';
 import { useDispatch, useSelector,} from 'react-redux';
 import * as actions from '../../store/actions/indexA';
 import axios from 'axios';
 import Aux from '../../Auxilary';
-/* const auth = (email,password) => {
-  const dispatch = useDispatch();
-
-  return dispa
-} */
-
-/* const LoginHandler = (e) =>{
-  const dispatch = useDispatch();
-  e.preventDefault();
-  // console.log(e.target[0].value) gives username
-  dispatch(actions.logIn(
-    e.target[0].value,
-    e.target[1].value))
-}
- */
 
 const SignUp = (email,password,confirmPassword) => {
 
@@ -48,7 +33,6 @@ const SignUp = (email,password,confirmPassword) => {
   return authData;
 }
 
-//maybe Hook issue could be avoided If I put LogIn in LoginWindow, check it later
 const LogIn = (email,pass,) =>{
   const authData ={
     email: email,
@@ -69,16 +53,14 @@ export const LoginWindow = () => {
     if(err){
       return (
         <Aux>
-        <p>{err.message}</p>
-        <p>Credentials incorrect / non-existing account</p>
+        <p className={classes.ErrorMessage}>{err.message}</p>
+        <p className={classes.ErrorMessage}>Credentials incorrect / non-existing account</p>
         </Aux>
       )
     }
   }
   return (
-    <div className={classes.Div} /* onClick={(e) => {
-      e.stopPropagation();
-      dispatch(flip()); } } */
+    <div className={classes.Div} 
     >
       <form 
       className={classes.Form} 
@@ -112,21 +94,49 @@ export const LoginWindow = () => {
 
 export const SignUpWindow = () => {
 
+  let [passwordInput, setPasswordInput] = useState('');
+  let [secondPasswordInput, setSecondPasswordInput] = useState('');
+  /* let [emailInput, setEmailInput] = useState(''); */
+  
   const dispatch = useDispatch();
   let authAttempt =(authData,type)=> dispatch(actions.authAttempt(authData, type));
   
   let gotError=(error)=> dispatch(actions.gotError(error));
   let error = useSelector(state => state.auth.error);
 
+  let passwordFeedback = ()=> {
+    if(passwordInput.length<6 && passwordInput.length>0){
+      return <p className={classes.ErrorMessage}>Please enter at least 6 characters</p>
+    }
+  }
+  let secondPasswordFeedback = ()=> {
+    if(secondPasswordInput.length>0){
+      if(passwordInput!==secondPasswordInput){
+        return <p className={classes.ErrorMessage}> Passwords are not matching!</p>
+      }
+    }
+  }
+ /*  let emailFeedback = ()=> {
+    const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+
+    if(!pattern.test(emailInput)){
+      return <p className={classes.ErrorMessage}>{`Please enter a valid email address format`}</p>
+    }
+  } */
+  let goodToGo = ()=>{
+    if(passwordInput.length>=6 && secondPasswordInput.length>=6 &&passwordInput===secondPasswordInput) 
+      {return false}
+    else return true;
+  }
   let errorPreview=(err)=>{
     if(err){
       if(typeof(err)==='string') return(
-      <p>{err}</p>
+      <p className={classes.ErrorMessage}>{err}</p>
       )
       else return (
-        <Aux>
-        <p>{error.message}</p>
-        <p>{`Please enter a valid email address (word@word`}+<b>'.com/.org/.net...'</b></p>
+        <Aux >
+        <p className={classes.ErrorMessage}>{error.message}</p>
+        <p className={classes.ErrorMessage}>{`Please enter proper email address format (word@word`}<b>.com/.org/.net...</b></p>
         </Aux>
       )
     }
@@ -154,15 +164,30 @@ export const SignUpWindow = () => {
         
         {errorPreview(error)}
 
-        <label > Email:<span><br/>(needs to be proper format, doesn't have to be real)</span> </label>
-        <input type='text' name='username' />
+        <label> Email: {/* {emailFeedback()} */}<span><br/>(needs to be proper format, doesn't have to be real)</span> </label>
+        <input type='text' name='username' 
+          /* value={emailInput}
+          onChange={(e)=> setEmailInput(e.target.value)} */
+        />
 
-        <label> Password: </label>
-        <input type='password' name='password'/>
-        <label> Confirm password: </label>
-        <input type='password' name='password'/>
+        <label> Password: {passwordFeedback()}</label>
+        <input type='password' name='password' 
+          value={passwordInput}
+          onChange={(e)=>setPasswordInput(e.target.value)}
+        />
 
-        <button form='signup'>Sign up</button>
+        <label> Confirm password: {secondPasswordFeedback()}</label>
+        <input type='password' name='password'
+           value={secondPasswordInput}
+           onChange={(e)=>setSecondPasswordInput(e.target.value)}
+        />
+
+        <button 
+          form='signup'
+          disabled={goodToGo()}
+        >
+          Sign up
+        </button>
         <button onClick={() => dispatch(actions.cancelAuth()) }>Cancel</button>
       </form>
 

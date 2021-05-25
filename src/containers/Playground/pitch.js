@@ -16,7 +16,7 @@ let Pitch =(props) => {
 
 
   return (
-    <main className={showSidebar ? pitchClass : classes.LargerPitch}>
+    <main className={(showSidebar || loadedNewLeagueScreen) ? pitchClass : classes.LargerPitch}>
       {props.children}
     </main>
   )

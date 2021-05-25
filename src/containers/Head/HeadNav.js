@@ -14,6 +14,7 @@ const HeadNav = () => {
   let token = useSelector(state => state.auth.token);
   //add button handlers so window can be shown, lazy loaded
   let menu = useSelector(state=> state.newLeague.showMenu);
+  let newLeagueMode = useSelector(state => state.newLeague.loaded)
 
   let showMenu = ()=> dispatch(actions.showMenu());
 
@@ -57,6 +58,7 @@ const HeadNav = () => {
       <button 
         className={classes.ShowMenu}
         onClick={()=> showMenu()}  
+        disabled={newLeagueMode}
         >
           {menu ? 'Hide sidebar' : 'Show sidebar'}
       </button>

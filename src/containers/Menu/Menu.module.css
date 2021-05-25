@@ -116,3 +116,21 @@
   transform: translateZ(0), translateX(0);
   
 }
+/********************/
+
+@media(orientation: portrait){
+  .Menu  {
+    z-index: 4;
+    height: 80vh;
+    width: 80vw;
+    border-radius: 0% 10% 10% 0%;
+/*     position: fixed;
+ */  }
+  
+  .Menu button{
+    font-size: 100%;
+    position: relative;
+    opacity: 1;
+    width: 70%;
+  }
+}

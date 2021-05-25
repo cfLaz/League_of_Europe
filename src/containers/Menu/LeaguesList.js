@@ -4,8 +4,8 @@ import * as actions from '../../store/actions/indexA';
 import Aux from '../../Auxilary';
 
 const LeaguesList = () => {
-  console.log('rendering LeaguesList component')
-
+/*   console.log('rendering LeaguesList component')
+ */
   let leagues = useSelector(state=> state.leagues.leagues);
   const dispatch = useDispatch();
   let selectedLeague = (league)=> dispatch(actions.selectLeague(league));

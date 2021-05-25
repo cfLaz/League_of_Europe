@@ -3,8 +3,12 @@
     border: 1px solid #333;
 /*      margin-left: 1%;
  */    /* background-color: rgba(51, 51, 51) */
-   height: 90%;
+   max-height: 90%;
    width: 60%;
+   display: table;
+    border-collapse: separate;
+    border-spacing: 2px;
+    overflow: scroll;
 }
 .TableRow {
   border: 1px solid #333;
@@ -20,9 +24,10 @@ td {
     font-weight:lighter;
 }
 .small {
-  min-width: 6%;
+  min-width: 8%;
   max-width: fit-content; /*don't think it works like I want */
 }
+
 
 .everyOther {
   background-color:rgba(21, 29, 105, 0.8)
@@ -32,11 +37,11 @@ td {
   max-height: 2%;
 }
 
-/* .TableRow td img {
+/*  .TableRow td img {
   width: 5%;
   height: 7%;
   float: left;
   margin-left: 2%;
   object-fit: scale-down;
   object-fit: contain;
-} */
+}  */

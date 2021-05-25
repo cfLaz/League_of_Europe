@@ -8,10 +8,10 @@
 }
 
 .Form {
-  z-index: 3;
+  z-index: 5;
   position: fixed;
   width: 50%;
-  margin-top: 10%;
+  margin-top: 5%;
   margin-left: 25%;
   height: auto;
   background-color: #103c52ec;
@@ -36,6 +36,11 @@ input:first-child{
   margin-top: 1%;
   margin-left: 25%;
   background-color: lightblue,  
+}
+.ErrorMessage {
+  font-style: italic;
+  color: red;
+  margin: 1%;
 }
 .Form span {
   font-family: sans-serif;

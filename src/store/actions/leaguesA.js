@@ -30,8 +30,8 @@ export const hideLeaguesList=()=>{return {type: 'HIDE_LEAGUES_LIST'}};
 
 
 export const selectLeague=(league) => {
-  console.log('selected league that will update currentLeague', league)
-  return{
+/*   console.log('selected league that will update currentLeague', league)
+ */  return{
     type: 'SELECTED_LEAGUE',
     league: league,
   }

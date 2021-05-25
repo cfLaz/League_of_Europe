@@ -117,7 +117,7 @@ const Preview = () => {
         <input 
           id= 'leagueName'
           type='text' 
-          placeholder="Enter name of your league"
+          placeholder="Enter name of your league here"
           value={leagueName}
           onChange={(e)=> setLeagueName(e.target.value) }
           />

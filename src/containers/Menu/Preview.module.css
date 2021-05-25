@@ -20,7 +20,7 @@ background: linear-gradient(to right, #000046,#1592b5); /* W3C, IE 10+/ Edge, Fi
    scroll-behavior: smooth;
     /*firefox*/
    scrollbar-width: thin;          /* "auto" or "thin" */
-   scrollbar-color: blue orange;
+   scrollbar-color: blue rgb(0, 166, 255);
 
    transition: all 400ms;
    transform: translateY(0);
@@ -58,6 +58,7 @@ background: linear-gradient(to right, #000046,#1592b5); /* W3C, IE 10+/ Edge, Fi
 .BackButtons:hover{
   cursor: pointer;
   opacity: 1;
+  color: red;
 } 
 
 .Preview form {
@@ -69,14 +70,15 @@ background: linear-gradient(to right, #000046,#1592b5); /* W3C, IE 10+/ Edge, Fi
   .Preview input{
     margin: 2% 0% 2% 0%;
     width: 60%;
-    background-color: royalblue;
+    background-color: whitesmoke;
     font-family: 'Roboto Slab', Times, serif;
     font-size: 90%;
     text-align: center;
+    border-bottom: 2px rgba(37, 23, 160, 0.925) dotted;
   }
   .Preview input::placeholder{
     color:black;
-    opacity: 0.8;
+    opacity: 0.6;
   }
   .Preview form button {
     padding: 1% 1% 1% 1%;
@@ -148,7 +150,8 @@ background: linear-gradient(to right, #000046,#1592b5); /* W3C, IE 10+/ Edge, Fi
 
 /*width*/
  ::-webkit-scrollbar {
-   width:2%;
+   width:8px;
+   height: 8px;
  }
 /*track*/
  ::-webkit-scrollbar-track {
@@ -160,4 +163,19 @@ background: linear-gradient(to right, #000046,#1592b5); /* W3C, IE 10+/ Edge, Fi
    background:rgb(17, 0, 255);
    border-radius:10px;
    border: 1px solid white;
+ }
+
+
+ @media(orientation: portrait){
+
+  .Preview {
+    position: absolute;
+    top: 11%;
+    height: auto;
+    width: 100%;  
+    border-radius: 0% 0% 10% 10%;
+  }
+  .Close {
+    transform: translateY(-200%);
+  }
  }

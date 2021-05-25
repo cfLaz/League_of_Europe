@@ -42,6 +42,7 @@ let newLeagueSubmitted=(state)=>{
     limit: false,
     loaded: !state.loaded,
     submittingNewLeague: false,
+    showMenu: true,
   })
 }
 
