@@ -3,6 +3,7 @@
   right: 0%;
   top: 0%;
   max-height: 90%;
+  min-height: 60%;
   width: 38%;
   background-color: rgba(17, 17, 158, 0.59);
 }
