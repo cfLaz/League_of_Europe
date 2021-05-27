@@ -108,10 +108,11 @@ background: linear-gradient(to right, #000046,#1592b5); /* W3C, IE 10+/ Edge, Fi
     background: rgba(37, 23, 160, 0.925);  
     cursor: pointer;
     width: 70%;
+    opacity: 1;
+    color: #4286f4;
   }
   .Start:hover{
-    color: #4286f4;
-    opacity: 1;    
+    color: whitesmoke;
   }
 
   /* emblem - name - stats*/

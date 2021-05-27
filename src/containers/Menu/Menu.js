@@ -57,17 +57,17 @@ const Menu = () => {
         
         
         <button onClick={loadClubs}>Create a new league </button>
-        
-        
-        <ul>
-          <p onClick={
+        <button onClick={
             ()=>{
               redirectToLeagues();
             }
             }
             key={'yourLeagues'}
-          >   Your leagues:
-          </p>
+          >   {showLeaguesList ? 'Hide leagues' : 'Show my leagues!'}
+          </button>
+        
+        <ul>
+          
           {spinner} 
           {redirect}
           <Route path='/leagues' component={LeaguesList}

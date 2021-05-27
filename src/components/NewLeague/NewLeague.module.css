@@ -97,5 +97,8 @@
 }
 
 @media(orientation: portrait){
-  
+  .Paragraphs {
+    font-size: medium;
+    position: absolute;
+  }
 }

@@ -133,7 +133,7 @@ export function* newLeague(action) {
     yield put(actions.submitted(action.token, action.userID));
     
 
-    alert('League created! You can check it now under "Your leagues" ')
+    alert('League created! You can check it now by clicking on Show my leagues! button ')
 
   } 
     catch(error) {

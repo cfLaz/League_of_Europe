@@ -11,10 +11,10 @@ const LeaguesList = () => {
   let selectedLeague = (league)=> dispatch(actions.selectLeague(league));
   
   
-  const selectLeague=(leagueName)=>{
+  const selectLeague=(leagueKey)=>{
     let league;
     for(let l of leagues){
-      if (l[0]===leagueName) {
+      if (l[3]===leagueKey) {
         league = l;
         break;
       }
@@ -29,8 +29,8 @@ const LeaguesList = () => {
         return (
           <Aux>
           <li 
-            key={league[0]}
-            onClick={()=> selectLeague(league[0])}
+            key={league[3]}
+            onClick={()=> selectLeague(league[3])}
           >
             {league[0]}
             {/* <span key={league[3]} onClick={()=> {deleteLeague(league[3], token)}}>

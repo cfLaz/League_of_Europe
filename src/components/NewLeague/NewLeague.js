@@ -8,15 +8,26 @@ import {select} from '../../store/actions/indexA';
 let NewLeague = () => {
   
   let loaded = useSelector(state => state.newLeague.loaded);
-  let selectedClubs = useSelector(state=> state.newLeague.selectedClubs)
+  let selectedClubs = useSelector(state=> state.newLeague.selectedClubs) //array of Objects
   let limit = useSelector(state=> state.newLeague.limit)
 
   let dispatch = useDispatch();
-
   let selectClub= club => dispatch(select(club))
 
-
   let clubList = Object.values(Teams)
+  let remainingClubs=[];
+
+  for(let club of clubList){
+    let included = false;
+    for(let selectedClub of selectedClubs){
+      if(selectedClub.emblemInfo[1]===club.emblemInfo[1]){
+          included=true;
+      }
+    }
+    if(!included) remainingClubs.push(club);
+  }
+   
+  //console.log('remainingClubs: ', remainingClubs);
 
   function getRandomNums(quantity, max){
     const arr = []
@@ -33,7 +44,7 @@ let NewLeague = () => {
     for(let i=0; i<(20- pickedSoFar); i++){
 
       setTimeout(()=>{
-        selectClub(clubList[ numbers[i] ]);
+        selectClub(remainingClubs[ numbers[i] ]);
       }, 100*i)
     }
   }

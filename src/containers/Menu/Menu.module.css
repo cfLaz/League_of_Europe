@@ -13,7 +13,7 @@
   background: linear-gradient(to right, #000046,#1592b5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 
-  height: 88%;
+  height: 89%;
   width: 18%;
   float: left;
  
@@ -84,14 +84,14 @@
 .Menu li {
   height: 25px;
 /*   float: left;*/ 
-  padding: 0 20px;
+  padding: 2%;
   margin-top: 2%;
   text-decoration: none;
   color: #ccc;
 /*   font: 25px/1 Helvetica, Verdana, sans-serif; */
   transition: all 300ms;
   -webkit-transition: all 0.5s ease;
-  text-align: right;
+  text-align: left;
   list-style: none;
 }
 .Menu p {
@@ -106,10 +106,10 @@
   color: yellow;
   cursor:alias;
 }
-.Menu li li:hover{
+/* .Menu li li:hover{
   text-decoration: solid;
   color: orangered;
-}
+} */
 .Menu li:active{
   font-weight: bold;
   transition: 0.4s;
