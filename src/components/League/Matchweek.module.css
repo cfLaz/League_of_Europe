@@ -172,24 +172,15 @@ tbody .TableRow {
   }
 
   .Congratulations {
-    position: absolute;
-    right: 0%;
-    top: 0%;
-    height: auto;
-    width: 35%;
-    
-    background-color: rgba(17, 17, 158, 0.261);
+    position: static;
+    max-height: 90vh;
+    min-height: 60vh;
+    width: 100%;  
+    order: -1;  
+    background-color: rgba(17, 17, 158, 0.59);
+    margin-bottom: 2%;
   }
-  .Congratulations img {
-    width: 45%;
-    /* height: 50%; */
-  }
-  .Congratulations p {
-    color: whitesmoke;
-    font-size: large;
-  }
-  .Congratulations span{
-    color: gold;
-  }
+
+
 }
 
