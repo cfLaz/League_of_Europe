@@ -4,11 +4,11 @@
   height: 100%;
   background-color: rgba(128, 128, 128, 0.4);
   /*opacity: 0.4;*/
-  z-index: 2;
+  z-index: 6;
 }
 
 .Form {
-  z-index: 5;
+  z-index: 7;
   position: fixed;
   width: 50%;
   margin-top: 5%;
@@ -20,6 +20,10 @@
   display: flex;
   flex-direction: column;
   color: whitesmoke
+}
+.Form label {
+  margin: 1%;
+  word-wrap: break-word;
 }
 
 label:first-child {
@@ -52,5 +56,28 @@ input:first-child{
   margin-bottom: 1%;
   margin-left: 45%;
   width: 10%;
+}
+
+@media(orientation: portrait){
+  
+.Form {
+  z-index: 7;
+  position: fixed;
+  width: 80%;
+  margin-top: 10%;
+  margin-left: 10%;
+  height: auto;
+}
+.Form input {
+  min-height: 40%;
+}
+.Form button {
+    min-height: 10%;
+    margin: auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    min-width: 30%;
+    font-size: 100%;
+  }
 }
 

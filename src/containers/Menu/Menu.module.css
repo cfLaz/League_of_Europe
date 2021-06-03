@@ -93,6 +93,8 @@
   -webkit-transition: all 0.5s ease;
   text-align: left;
   list-style: none;
+  white-space: nowrap;
+
 }
 .Menu p {
 /*   text-align: left;
@@ -121,16 +123,31 @@
 @media(orientation: portrait){
   .Menu  {
     z-index: 4;
-    height: 80vh;
+    height: 85vh;
     width: 80vw;
     border-radius: 0% 10% 10% 0%;
-/*     position: fixed;
- */  }
-  
+    position: fixed;
+   }
+   .Close {
+    transform: translateX(-98%);
+  }
   .Menu button{
     font-size: 100%;
     position: relative;
     opacity: 1;
     width: 70%;
+  }
+  .Menu li {
+    height: 25px;
+  /*   float: left;*/ 
+    padding: 2%;
+    margin-top: 2%;
+    text-decoration: none;
+    color: #ccc;
+  /*   font: 25px/1 Helvetica, Verdana, sans-serif; */
+    transition: all 300ms;
+    -webkit-transition: all 0.5s ease;
+    text-align: left;
+    list-style: none;
   }
 }

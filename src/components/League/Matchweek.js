@@ -154,7 +154,7 @@ const Matchweek=()=>{
 
       <button onClick={()=> {
         toggleShowDelete(false)
-        }}>Noo! It's too painful.</button>
+        }}>Noo!</button>
 
     </div></div> : null;
     return deleteWindow;

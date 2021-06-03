@@ -1,16 +1,14 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useState} from 'react';
 import classes from './Table.module.css';
-import {useSelector, useDispatch} from 'react-redux';
+import {useSelector} from 'react-redux';
 //import * as actions from '../../store/actions/indexA';
 
 const Table = () => {
   let league = useSelector(state => state.leagues.currentLeague)
-  let currMW = league[2].currentMatchweek;
-  //console.log('Table rendering');
-  //let dispatch = useDispatch();
-  /* let DeclareWinner=(team)=> useCallback(()=> dispatch(actions.declareWinner(team)), [] ); */
   
-const takeData = () => {
+  let [Width,setWidth] = useState(window.innerWidth);
+  let [Height,setHeight] = useState(window.innerHeight);
+  const takeData = () => {
   let teamStats =[];
   for(let club in league[1]){
     teamStats.push( 
@@ -88,24 +86,40 @@ const takeData = () => {
       }  
       outputArray.push(
         <tr className={classesArray} key={'position '+(i+1)}>
-          <td>{i+1}</td>
+          <td title='position'>{i+1}.</td>
           <td>
             
                {/* <img src={helperArray[i][7]} alt=''/> */}  {helperArray[i][0]}
                  
           </td>
-          <td>{helperArray[i][1]}</td> 
+          <td title='played'>{helperArray[i][1]}</td> 
           <td title='wins'>{helperArray[i][2] }</td>
           <td title='draws'>{helperArray[i][3]}</td>
           <td title='losses'>{helperArray[i][4]}</td>
-          <td title='goal difference'>{helperArray[i][5]}</td>
-          <td>{helperArray[i][6]}</td>
+          <td title='goalDifference'>{helperArray[i][5]}</td>
+          <td title='points'>{helperArray[i][6]}</td>
         </tr>
         )
     }
     return outputArray;
   }
-  
+
+  //let Width=window.innerWidth;
+  //let Height = window.innerHeight;
+  window.addEventListener('resize', function(/*event*/){
+    setWidth(window.innerWidth);
+    setHeight(window.innerHeight); 
+  });
+
+  let position = <td>Position</td>;
+  let played = <td>Played</td>;
+  let points = <td>Points</td>
+
+  if(Width<Height){
+    position=<td title='position'>#</td>;
+    played = <td title='played'>pl</td>;
+    points = <td title='points'>pts</td>
+  }
   return(
     <table className={classes.Table}> 
     <thead>
@@ -115,40 +129,19 @@ const takeData = () => {
     </thead>
     <tbody>
         <tr className={classes.TableRow}>
-            <td>Position</td>
+            {position}
             <td>Team</td>
-            <td>played</td>
+            {played}
             <td className={classes.small} title='wins'>W</td>
             <td className={classes.small} title='draws'>D</td>
             <td className={classes.small} title='losses'>L</td>
-            <td className={classes.small} title='goal difference'>GD</td>
-            <td>Points</td>
+            <td className={classes.small} title='goalDifference'>GD</td>
+            {points}
         </tr>
        {takeData()}
     </tbody>
     </table>
-    /**
-    <div className={classes.Table}> 
-    <div className={classes.Thead}>
-        
-          {league[0]}
-        
-    </div>
-    <div className={classes.Tbody}>
-        <div className={classes.TableRow}>
-            <div>Position</div>
-            <div>Team</div>
-            <div>played</div>
-            <div className={classes.small} title='wins'>W</div>
-            <div className={classes.small} title='draws'>D</div>
-            <div className={classes.small} title='losses'>L</div>
-            <div className={classes.small} title='goal difference'>GD</div>
-            <div>Points</div>
-        </div>
-       {takeData()}
-    </div>
-    </div>
-     */
+    
   )
 }
 

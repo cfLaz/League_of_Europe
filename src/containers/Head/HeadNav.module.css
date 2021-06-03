@@ -5,6 +5,7 @@
   display: flex;
   flex-flow: row;
   justify-content: space-between;
+  overflow: visible;
 }
 
 /* .Nav div {
@@ -22,7 +23,7 @@
 }
 
 .ShowMenu {
-  padding: 1em 2.1em 1.1em;
+  padding: 2px 1% 2px;
   border-radius: 3px;
   /* margin: 8px 8px 8px 8px; */
   color: #fbdedb;
@@ -35,7 +36,7 @@
   transition: 0.3s;
   font-family: sans-serif;
   font-weight: 800;
-  font-size: .85em;
+  font-size: .75em;
   text-transform: uppercase;
   text-align: center;
   text-decoration: none;
@@ -45,6 +46,7 @@
   position: relative;
   opacity: 0.6;
   overflow:visible;
+  margin: 2px 0px 0px 2px;
 }
 .ShowMenu:hover {
   opacity: 1;
@@ -59,13 +61,16 @@
 
 
 .Auth {
-  width: 15%;
+  width: auto;
+  overflow: visible;
+  white-space: nowrap;
+  margin-right: 3%;
 }
 
 .Auth button {
   margin: 5%;
-  width: 40%;
-  height: 70%;
+  width: auto;
+  height: auto;
   color: #fbdedb;
   background-color: #fbdedb;
 /*     display: inline-block;
@@ -79,12 +84,16 @@
   font-size: 100%;
   text-align: center;
   text-decoration: none;
+  
   -webkit-box-shadow: 0em -0.3rem 0em rgba(0, 0, 0, 0.1) inset;
   -moz-box-shadow: 0em -0.3rem 0em rgba(0, 0, 0, 0.1) inset;
   box-shadow: 0em -0.3rem 0em rgba(0, 0, 0, 0.1) inset;
+  
   position: relative;
   opacity: 0.8;
   border-radius: 5%;
+  overflow: visible;
+  white-space: nowrap;
 }
 .Auth button:hover, .Auth button:active {
   opacity: 1;
@@ -108,22 +117,23 @@ border-radius: 50em !important;
   }
   .Nav .Auth {
     width: 30%;
+    margin-right: 0px; 
   }
   
   .Nav .Title {
-    font-size: 16px;
+    font-size: medium;
     padding-top: 3px;
     color: rgb(245, 245, 245);
     text-shadow: 2px 2px 30px rgba(255, 255, 255, 0.707);
     /* border-radius: 0 0 50% 50%; */
     text-align: center;
-    margin-top: 5%;
+    margin-top: 1%;
   }
   
   
   .Nav .Auth button {
-    margin: 5%;
-    font-size: 12px;
+    margin: 5% 0% 5%;
+    font-size: 80%;
   }
   
   .Nav .ShowMenu {

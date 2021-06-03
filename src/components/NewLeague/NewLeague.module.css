@@ -1,4 +1,4 @@
-.MainDiv {
+.GhostDiv {
   right: 0%;
   display:none;
 }  
@@ -97,8 +97,65 @@
 }
 
 @media(orientation: portrait){
+
+  .RegularDiv {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: block;
+    justify-content: space-between;
+    
+  }
+  .wrapper{
+    top: 68%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    position: absolute;
+    width:95%;
+    min-height: 93%;
+    background: none;
+    right: 0%;
+    border: 2px dotted #4286f4;
+    border-radius: 5%;
+    display: block;
+
+  } 
+  .Teams { 
+    position: absolute;
+    display: flex;
+    border-radius: 3%;
+    width:100%;
+    height: auto;
+    margin: auto;
+    margin-bottom: 2%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    background: 
+      center url('../../images/europe.PNG');
+      background-size: contain;
+   /*  background: 
+      center url('../../images/europe.PNG');
+      background-size: contain; */
+  
+  }
+  .Teams img{
+    min-width: 18%;
+    min-height: 21%;
+    margin: 2%;
+  }
+
   .Paragraphs {
+    margin: auto;
+    left: 4%;
     font-size: medium;
     position: absolute;
+    top: 45%;
+    width: 95%;
+    height: auto;
+    display: block;
+    background-color: rgba(17, 17, 158, 0.59);
+    border-radius: 5%;
   }
+
 }

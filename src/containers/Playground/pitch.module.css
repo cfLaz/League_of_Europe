@@ -1,4 +1,5 @@
 .Pitch, .SidebarPitch {
+  z-index: 3;
   position: fixed;
   margin: 1% 0% 0% 5%;
 /*   border: 2px dotted orange;*/  
@@ -28,17 +29,23 @@
 
 @media(orientation: portrait) {
   .Pitch, .SidebarPitch{  
-    position: relative;
-    margin: 1% 0% 0% 5%;
+    position:fixed;
+    margin: 1%;
   /*border: 2px dotted orange; */
+    min-height: 90%;
+    /*max-height: auto; 
+    no need for this, it's automatic, according to my testing*/
     height:auto;
     width: 98%;
     right: 1%;
     transition: all 500ms;
     float: none;
-    overflow: visible;
+    overflow: auto;
   }
   .SidebarPitch{
-    width: 80%;
+    width: 95%;
+  }
+  .LargerPitch {
+   width: 95%;
   }
 } 

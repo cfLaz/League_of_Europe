@@ -171,12 +171,16 @@ background: linear-gradient(to right, #000046,#1592b5); /* W3C, IE 10+/ Edge, Fi
 
   .Preview {
     position: absolute;
-    top: 11%;
-    height: auto;
+    z-index: 5;
+    top: 10%;
+    max-height: 40%;
     width: 100%;  
-    border-radius: 0% 0% 10% 10%;
+    border-radius: 10%;
   }
   .Close {
     transform: translateY(-200%);
+  }
+  .BackButtons {
+    position: sticky;
   }
  }

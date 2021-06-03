@@ -50,11 +50,11 @@ let NewLeague = () => {
   }
 
   return (
-  <div className={loaded ? null : classes.MainDiv}>
+  <div className={loaded ? classes.RegularDiv : classes.GhostDiv}>
 
     <span className={classes.Paragraphs}>
-    <p>Pick the football clubs that you want in your league!</p>
-    <p>...or choose them randomly: 
+    <p>Pick 20 football clubs that you want in your league!</p>
+    <p>... or choose them randomly: 
       <button 
         onClick={()=>randomPick(selectedClubs.length)}
         disabled={selectedClubs.length===20}>

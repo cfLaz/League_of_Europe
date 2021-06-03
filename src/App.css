@@ -194,7 +194,8 @@
 @media(orientation: portrait)  {
 
   .App{
-    background: rgb(27, 180, 191);
+    background-image: url("./images/mobileBackgroundCropped.jpg");
+    background-size: cover;
     overflow: scroll;
   }
  

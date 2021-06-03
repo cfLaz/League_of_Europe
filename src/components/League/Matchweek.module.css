@@ -141,3 +141,55 @@ tbody .TableRow {
   color: gold;
 }
 
+@media(orientation: portrait){
+  .MatchweekTable {
+    position: static;
+    max-height: 90vh;
+    min-height: 60vh;
+    width: 100%;
+    background-color: rgba(17, 17, 158, 0.59);
+    overflow: auto;
+    margin-bottom: 5%;
+    font-size: small;
+  }
+  .DeleteButton {
+    position: relative;
+    width: 50%;
+    margin: auto;
+    background: #b42919b9;
+  }
+  .DeleteWindow {
+    position: fixed;
+    left: 10%;
+    top: 20%;
+    z-index: 4;
+    background-color: rgba(42, 79, 174, 0.878);
+    color: whitesmoke;
+    /* margin: auto; */
+    width: 80%;
+    height: 35%;
+    font-size: large;
+  }
+
+  .Congratulations {
+    position: absolute;
+    right: 0%;
+    top: 0%;
+    height: auto;
+    width: 35%;
+    
+    background-color: rgba(17, 17, 158, 0.261);
+  }
+  .Congratulations img {
+    width: 45%;
+    /* height: 50%; */
+  }
+  .Congratulations p {
+    color: whitesmoke;
+    font-size: large;
+  }
+  .Congratulations span{
+    color: gold;
+  }
+}
+

@@ -46,3 +46,30 @@ td {
   object-fit: scale-down;
   object-fit: contain;
 }  */
+
+@media(orientation: portrait){
+  .Table
+  { position: static;
+    width: auto;
+    
+    overflow: auto;
+    margin-bottom: 5%;
+     
+  } 
+  .TableRow .small {
+    min-width: 8%;
+    max-width: 10%; /*don't think it works like I want */
+  }
+  .Table .TableRow [title~=goalDifference]{
+    width: fit-content;
+    white-space: nowrap ;
+  }
+  .TableRow td {
+    font-size: small;
+  }
+  /* .Table .TableRow{
+    /* display: flex;
+    flex-flow: row; */
+    /* justify-content: space-evenly;
+  } */
+}
