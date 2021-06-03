@@ -165,7 +165,6 @@ tbody .TableRow {
     z-index: 4;
     background-color: rgba(42, 79, 174, 0.878);
     color: whitesmoke;
-    /* margin: auto; */
     width: 80%;
     height: 35%;
     font-size: large;
@@ -180,7 +179,5 @@ tbody .TableRow {
     background-color: rgba(17, 17, 158, 0.59);
     margin-bottom: 2%;
   }
-
-
 }
 
