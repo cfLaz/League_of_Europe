@@ -141,6 +141,13 @@ tbody .TableRow {
   color: gold;
 }
 
+.exportBtn {
+  position: fixed;
+  bottom: 1%;
+  right: 15%;
+  background-color: rgb(6, 106, 6);
+}
+
 @media(orientation: portrait){
   .MatchweekTable {
     position: static;
@@ -151,6 +158,14 @@ tbody .TableRow {
     overflow: auto;
     margin-bottom: 5%;
     font-size: small;
+  }
+  .exportBtn {
+    position: relative;
+    width: 60%;
+    margin: auto;
+    right: 1%;
+  /*   bottom: 4%; */
+    margin-bottom: 3%;
   }
   .DeleteButton {
     position: relative;

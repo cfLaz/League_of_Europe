@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import classes from './Matchweek.module.css';
+import XLSX from 'xlsx';
+import { saveAs } from 'file-saver';
 import {useSelector, useDispatch} from 'react-redux';
 import Simulate from './SimulateResults';
 import Aux from '../../Auxilary';
@@ -160,6 +162,53 @@ const Matchweek=()=>{
     return deleteWindow;
   }
 
+  let arrayForExcel=()=>{
+    let array=[];
+   
+    for(let i=1; i<39; i++){
+      array.push(['matchweek '+i])
+
+      for(let game of league[2]['matchweek'+i]){
+        array.push(game);
+      }
+      array.push([]);
+    }
+    return array;
+  }
+
+  let exportResults=()=> {
+   
+    let workbook = XLSX.utils.book_new();
+    workbook.Props = {
+      Title: league[0],
+      Subject: 'schedule and results',
+      Author: 'Lazar Jankovic',
+      CreatedDate: new Date(),
+    }
+    workbook.SheetNames.push('sheet');
+
+    let data = arrayForExcel(); //test
+
+    let worksheet =XLSX.utils.aoa_to_sheet(data);
+    workbook.Sheets['sheet'] = worksheet;
+
+    let exportWBasBinary = XLSX.write(workbook, {bookType: 'xlsx', type: 'binary'});
+
+    function convertToOctet(something) {
+      let buf = new ArrayBuffer(something.length);
+      let view = new Uint8Array(buf);
+      for(let i=0; i<something.length; i++) view[i] = something.charCodeAt(i) & 0xFF;
+      return buf;
+    }
+
+    return saveAs(new Blob([convertToOctet(exportWBasBinary)],{type:"application/octet-stream"}), 'results-schedule.xlsx');  
+  }
+
+  let exportButton = <button className={classes.exportBtn +' '+ classes.Buttons}
+      onClick={()=> exportResults() }
+      >export schedule/results
+    </button>
+
   if(currMW<39){
 
     return(
@@ -185,6 +234,7 @@ const Matchweek=()=>{
       </tfoot>
       </table>
       
+      {exportButton}
       {deleteButton()}
       {showDeleteWindow()}
         
@@ -217,6 +267,7 @@ const Matchweek=()=>{
         {emblem}
       </div>
 
+      {exportButton}
       {deleteButton()}
       {showDeleteWindow()}
       </Aux>
