@@ -46,7 +46,18 @@ let newLeagueSubmitted=(state)=>{
   })
 }
 
-
+let editClub = (state, action) => {
+  //console.log(action.club);
+  let helperArray = JSON.parse(JSON.stringify(state.selectedClubs));
+  //console.log(helperArray);
+  for(let i=0; i<helperArray.length; i++){
+    if(helperArray[i].emblemInfo[1] === action.club.emblemInfo[1]){
+      helperArray[i] = action.club;
+    }
+  }
+  
+  return updateObject(state, {selectedClubs: helperArray} );
+}
 
 const reducer = (state = initialState, action) => {
   switch(action.type){
@@ -77,7 +88,8 @@ const reducer = (state = initialState, action) => {
       submittingNewLeague: false,
     })
     
-    
+    case 'EDITED': return editClub(state, action);
+
     default: return state;
   }
 }

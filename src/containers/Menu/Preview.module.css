@@ -2,7 +2,7 @@
 .Preview {
   /* display: flex;*/
   font-family: 'Roboto Slab', serif;
-  z-index: 3;
+  z-index: 4;
   position: fixed;
   /*flex-direction: column; */
   top: 1%;
@@ -75,6 +75,7 @@ background: linear-gradient(to right, #000046,#1592b5); /* W3C, IE 10+/ Edge, Fi
     font-size: 90%;
     text-align: center;
     border-bottom: 2px rgba(37, 23, 160, 0.925) dotted;
+    
   }
   .Preview input::placeholder{
     color:black;
@@ -116,12 +117,12 @@ background: linear-gradient(to right, #000046,#1592b5); /* W3C, IE 10+/ Edge, Fi
   }
 
   /* emblem - name - stats*/
-.Preview div { 
+.Preview > div { 
   color:whitesmoke;
   width: 95%;
   height: auto;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: space-between;
   margin: 3% 0% 0% 2%;
@@ -130,17 +131,30 @@ background: linear-gradient(to right, #000046,#1592b5); /* W3C, IE 10+/ Edge, Fi
   .Preview div img {
     width: 12%;
     height: 100%;
-    margin-top: 0%;
+    margin-top: 1%;
 }
   .Preview img + p {
     cursor:crosshair;
   }
-  .Preview div:hover{
+  .Preview > div:hover, .Preview > div:focus{ 
     background: radial-gradient(circle at center, rgba(255, 0, 0, 0.741) 0%, rgba(255, 255, 255, 0) 95%);
 }
-
-.Preview p {
-  margin: 0% 0% 0% 3%;
+  .Preview div input {
+    margin: 2% 0% 2% 0%;
+    width: 10%;
+    background-color: rgba(35, 122, 236, 0.519);
+    font-size: 90%;
+    margin-right: 2%;
+    color: whitesmoke; 
+    border: none;
+    border-bottom: 2px rgba(37, 23, 160, 0.925) dotted;
+  } 
+  .Preview div input::placeholder {
+    color: whitesmoke;
+  }
+  .Preview p {
+/*   margin: 0% 0% 0% 3%;
+ */  width: fit-content;
 }
 
 .Preview .clubName {

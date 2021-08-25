@@ -201,7 +201,7 @@ const Matchweek=()=>{
       return buf;
     }
 
-    return saveAs(new Blob([convertToOctet(exportWBasBinary)],{type:"application/octet-stream"}), 'results-schedule.xlsx');  
+    return saveAs(new Blob([convertToOctet(exportWBasBinary)],{type:"application/octet-stream"}), 'schedule and results.xlsx');  
   }
 
   let exportButton = <button className={classes.exportBtn +' '+ classes.Buttons}

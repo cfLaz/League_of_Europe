@@ -53,7 +53,7 @@ import {useDispatch} from 'react-redux';
 import {select} from '../../store/actions/indexA';
  */
 
-let Teams ={
+const Teams ={
       Liverpool: {
         ATK: 89,
         MID: 88,

@@ -7,8 +7,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as actions from '../../store/actions/indexA';
 //import axios from '../../axios';
 import MatchWeekGenerator from '../../components/NewLeague/MatchweekGenerator';
+import EditStrength from '../../components/NewLeague/EditStrength';
+
 const Preview = () => {
   let [leagueName, setLeagueName] = useState('');
+  //let [editClub, setEditClub] = useState(false);
 
   let clubs = useSelector(state => state.newLeague.selectedClubs);
   let limit = useSelector(state => state.newLeague.limit);
@@ -22,6 +25,7 @@ const Preview = () => {
   let clearClubs = ()=> dispatch(actions.clear());
   let startNewLeague = (league,token,userID) => dispatch(actions.start(league, token, userID));
   
+  let league = JSON.parse(JSON.stringify(Teams));
 
   let preview = clubs.map(club => {
     return <div key={club.emblemInfo[1]}>
@@ -30,29 +34,57 @@ const Preview = () => {
             alt={club.emblemInfo[1]} 
             title={club.emblemInfo[2]}
           /> 
-          <p 
-            onClick={()=>removeClub(club)}
+          <p onClick={()=>removeClub(club)}
             className={classes.clubName}
-            title='click to remove club'  
-          >
+            title='click to remove club'>
             {club.emblemInfo[1]} 
           </p> 
 
-          <p title='team strength'> 
-            ATK: {club.ATK}  MID: {club.MID}  DEF:{club.DEF}  
-          </p>
+          <EditStrength club={club} league={league} originalTeams={Teams}/>
+         {/*  <p title='team strength'> 
+            ATK: <input type='number' 
+                  min='1' max='99' required pattern='\d+'
+                  placeholder={club.ATK}
+                  onChange={(e) => {
+                    
+
+                    club.ATK = e.target.value
+                    console.log(club.ATK)
+                  }}
+                  />
+
+            MID: <span
+            contentEditable="true"
+            onChange={(e)=> {
+              console.log(e)
+            }}
+            
+            >{club.MID}</span>  
+            
+            DEF:{club.DEF}  
+          </p> */}
           </div>
   })
 
-  let league = JSON.parse(JSON.stringify(Teams));
-  
+/*   let editClubStrength = (club) => {
+    if(editClub) {
+      // return div for editing club strength
+      // confirm or cancel changes editClub to false, 
+      // perhaps, :|   
+    }
+  } */
+
+
   //filters out clubs I selected into object format that I want to send to Firebase
   if(clubs.length>0){
     Object.keys(league).map(team => {
       let contains=false;
 
       for(let i =0; i<clubs.length; i++){
-        if(clubs[i].emblemInfo[1] === league[team].emblemInfo[1]) {contains=true}
+        if(clubs[i].emblemInfo[1] === league[team].emblemInfo[1]) {
+          contains=true
+          league[team] = clubs[i]; //for when we edit
+        }
       }
       if(!contains) delete league[team]
       return ''; //Added because of the warning message for map()
@@ -81,7 +113,7 @@ const Preview = () => {
     let data = {
       [theLeagueName]: leagueWithStats, //has to be in brackets yo
       userID: userID,
-      schedule: MatchWeekGenerator(league),
+      schedule: MatchWeekGenerator(leagueWithStats),
     }
     setLeagueName('');
     return startNewLeague(JSON.stringify(data), token, userID)

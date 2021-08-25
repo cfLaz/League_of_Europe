@@ -8,6 +8,7 @@ export {
   showMenu,
   submitted,
   gotError,
+  editStrength,
 } from './newLeagueA';
 
 export {

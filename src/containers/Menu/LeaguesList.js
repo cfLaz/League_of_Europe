@@ -9,7 +9,7 @@ const LeaguesList = () => {
   let leagues = useSelector(state=> state.leagues.leagues);
   const dispatch = useDispatch();
   let selectedLeague = (league)=> dispatch(actions.selectLeague(league));
-  
+  let hideMenu =()=> dispatch(actions.showMenu());
   
   const selectLeague=(leagueKey)=>{
     let league;
@@ -19,9 +19,8 @@ const LeaguesList = () => {
         break;
       }
     }
-    //console.log(league);
-    //if(league[2].currentMatchweek>38) league[4] = {winner : 'a'}
-    return selectedLeague(league);
+    selectedLeague(league); 
+    hideMenu();
   }
   return(
     <Aux>

@@ -25,6 +25,7 @@ let NewLeague = () => {
       }
     }
     if(!included) remainingClubs.push(club);
+    //console.log(remainingClubs);
   }
    
   //console.log('remainingClubs: ', remainingClubs);
@@ -66,7 +67,7 @@ let NewLeague = () => {
     <div className={classes.wrapper}>
     <div className={classes.Teams}>
 
-      {clubList.map(club => {
+      {/* {clubList.map(club => {
         let team = selectedClubs.includes(club) ? null :(
           limit ?
             <img 
@@ -85,8 +86,32 @@ let NewLeague = () => {
               onClick={()=>selectClub(club)}    
             /> 
           )
+        //console.log(club);
         return team;
-      })}
+      })} */}
+    {remainingClubs.map(club => {
+      let team = limit ?
+      <img 
+        alt={club.emblemInfo[1]} 
+        src={club.emblemInfo[0]} 
+        key={club.emblemInfo[2]}
+        title={club.emblemInfo[2]}
+        className={classes.Disable}             
+      /> 
+      : 
+      <img 
+        alt={club.emblemInfo[1]} 
+        src={club.emblemInfo[0]} 
+        key={club.emblemInfo[2]}
+        title={club.emblemInfo[2]}
+        onClick={()=>selectClub(club)}    
+      />;
+      //console.log('choice shuffle')
+      return team;  
+    })
+            
+          
+       }
     </div>
     </div>
    {/*  <div className={classes.Preview}>

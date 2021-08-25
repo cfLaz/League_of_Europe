@@ -62,3 +62,10 @@ export const gotError=(error)=>{
     error: error,
   }
 }
+
+export const editStrength=(club)=>{
+  return{
+    type: 'EDITED',
+    club: club,
+  }
+}
